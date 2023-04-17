@@ -1,0 +1,457 @@
+[
+  {
+    "sn": 1,
+    "dc": 1,
+    "gn": "Aceclofenac 100mg and Paracetamol 325mg Tablets",
+    "us": "10's",
+    "mrp": 10,
+    "avl": 1
+  },
+  {
+    "sn": 2,
+    "dc": 2,
+    "gn": "Aceclofenac Tablets IP 100 mg",
+    "us": "10's",
+    "mrp": 8,
+    "avl": 0
+  },
+  {
+    "sn": 3,
+    "dc": 3,
+    "gn": "Pregabalin Capsules IP 75 mg",
+    "us": "10's",
+    "mrp": 22,
+    "avl": 0
+  },
+  {
+    "sn": 4,
+    "dc": 5,
+    "gn": "Aspirin Gastro-resistant Tablets IP 150 mg",
+    "us": "14's",
+    "mrp": 5,
+    "avl": 1
+  },
+  {
+    "sn": 5,
+    "dc": 6,
+    "gn": "Chlorzoxazone 500mg, Diclofenac 50mg and Paracetamol 325mg Tablets",
+    "us": "10's",
+    "mrp": 25,
+    "avl": 1
+  },
+  {
+    "sn": 6,
+    "dc": 7,
+    "gn": "Diclofenac Gel IP (Diclofenac Diethylamine 1.16%w/w)",
+    "us": "15 g",
+    "mrp": 12,
+    "avl": 1
+  },
+  {
+    "sn": 7,
+    "dc": 8,
+    "gn": "Serratiopeptidase 10mg and Diclofenac Sodium 50mg Tablets",
+    "us": "10's",
+    "mrp": 15,
+    "avl": 1
+  },
+  {
+    "sn": 8,
+    "dc": 9,
+    "gn": "Diclofenac Sodium Prolonged Release Tablets IP 100 mg",
+    "us": "10's",
+    "mrp": 12,
+    "avl": 1
+  },
+  {
+    "sn": 9,
+    "dc": 10,
+    "gn": "Diclofenac Sodium Injection IP 25mg per ml",
+    "us": "3 ml",
+    "mrp": 4,
+    "avl": 0
+  },
+  {
+    "sn": 10,
+    "dc": 11,
+    "gn": "Diclofenac Gastro-Resistant Tablets IP 50 mg",
+    "us": "10's",
+    "mrp": 5,
+    "avl": 0
+  },
+  {
+    "sn": 71,
+    "dc": 75,
+    "gn": "Ceftriaxone Injection IP 1 g",
+    "us": "Vial & Wfi",
+    "mrp": 28,
+    "avl": 1
+  },
+  {
+    "sn": 72,
+    "dc": 76,
+    "gn": "Ceftriaxone Injection IP 250 mg",
+    "us": "Vial & Wfi",
+    "mrp": 13,
+    "avl": 0
+  },
+  {
+    "sn": 73,
+    "dc": 77,
+    "gn": "Ceftriaxone injection IP 500 mg",
+    "us": "Vial & Wfi",
+    "mrp": 24,
+    "avl": 1
+  },
+  {
+    "sn": 74,
+    "dc": 78,
+    "gn": "Cefuroxime Axetil Tablets IP 250 mg",
+    "us": "10's",
+    "mrp": 75,
+    "avl": 1
+  },
+  {
+    "sn": 75,
+    "dc": 79,
+    "gn": "Cefuroxime Axetil Tablets IP 500 mg",
+    "us": "10's",
+    "mrp": 142,
+    "avl": 1
+  },
+  {
+    "sn": 76,
+    "dc": 80,
+    "gn": "Cephalexin Dispersible Tablets 125mg",
+    "us": "10's",
+    "mrp": 21,
+    "avl": 0
+  },
+  {
+    "sn": 77,
+    "dc": 81,
+    "gn": "Cephalexin Capsules IP 250mg",
+    "us": "10's",
+    "mrp": 33,
+    "avl": 0
+  },
+  {
+    "sn": 78,
+    "dc": 82,
+    "gn": "Cephalexin Capsules IP 500mg",
+    "us": "10's",
+    "mrp": 50,
+    "avl": 0
+  },
+  {
+    "sn": 79,
+    "dc": 83,
+    "gn": "Ciprofloxacin 250mg and Tinidazole 300mg Tablets",
+    "us": "10's",
+    "mrp": 28,
+    "avl": 1
+  },
+  {
+    "sn": 80,
+    "dc": 84,
+    "gn": "Ciprofloxacin 500mg and Tinidazole 600mg Tablets",
+    "us": "10's",
+    "mrp": 39,
+    "avl": 1
+  },
+  {
+    "sn": 87,
+    "dc": 92,
+    "gn": "Doxycycline Capsules IP 100mg",
+    "us": "10's",
+    "mrp": 14,
+    "avl": 0
+  },
+  {
+    "dc": 913,
+    "gn": "Hydrocortisone Sodium Succinate Injection IP 100mg",
+    "us": "Vial",
+    "mrp": 20,
+    "avl": 0
+  },
+  {
+    "dc": 915,
+    "gn": "Hydroxyzine Hydrochloride Tablets IP 10mg",
+    "us": "10's",
+    "mrp": 7,
+    "avl": 1
+  },
+  {
+    "dc": 916,
+    "gn": "Imatinib Mesylate Tablets IP 400mg",
+    "us": "10's",
+    "mrp": 350,
+    "avl": 1
+  },
+  {
+    "dc": 917,
+    "gn": "Imipramine Hydrochloride Tablets IP 25mg",
+    "us": "10's",
+    "mrp": 5,
+    "avl": 0
+  },
+  {
+    "dc": 920,
+    "gn": "Insulin Regular (R-DNA Origin) Injection 100 IU",
+    "us": "3 ml Catridge",
+    "mrp": 170,
+    "avl": 1
+  },
+  {
+    "dc": 922,
+    "gn": "Isopropyl Alcohol IP (70%) (Spirit)",
+    "us": "100 ML bottle",
+    "mrp": 40,
+    "avl": 0
+  },
+  {
+    "dc": 923,
+    "gn": "Isosorbidemononitrate Tablets IP 20mg",
+    "us": "10's",
+    "mrp": 8,
+    "avl": 0
+  },
+  {
+    "dc": 924,
+    "gn": "Isoxsuprine Hydrochloride Tablets IP 10mg",
+    "us": "50's",
+    "mrp": 45,
+    "avl": 0
+  },
+  {
+    "dc": 926,
+    "gn": "Ketoconazole Cream 2% w/w",
+    "us": "15 gm Tube",
+    "mrp": 19,
+    "avl": 1
+  },
+  {
+    "dc": 931,
+    "gn": "Lamotrigine Tablets 100mg",
+    "us": "10's",
+    "mrp": 44,
+    "avl": 0
+  },
+  {
+    "dc": 932,
+    "gn": "Latanoprost Eye Drops IP 0.005% w/v (50mcg per ml)",
+    "us": "2.5 ML",
+    "mrp": 40,
+    "avl": 0
+  },
+  {
+    "dc": 938,
+    "gn": "Levocarnitine Injections 1gm",
+    "us": "5 ml",
+    "mrp": 70,
+    "avl": 1
+  },
+  {
+    "dc": 939,
+    "gn": "Levocarnitine Tablets IP 500mg",
+    "us": "10's",
+    "mrp": 56,
+    "avl": 0
+  },
+  {
+    "dc": 944,
+    "gn": "Levosalbutamol Inhaler 50mcg",
+    "us": "200 Mdi",
+    "mrp": 83,
+    "avl": 1
+  },
+  {
+    "dc": 1022,
+    "gn": "Prochlorperazine Maleate Tablets I.P 5mg",
+    "us": "10's",
+    "mrp": 20,
+    "avl": 0
+  },
+  {
+    "dc": 1024,
+    "gn": "Promethazine Injection IP 25 mg per ml",
+    "us": "2 ml",
+    "mrp": 3,
+    "avl": 1
+  },
+  {
+    "dc": 1026,
+    "gn": "Propranolol Tablets IP 10mg",
+    "us": "10's",
+    "mrp": 5,
+    "avl": 1
+  },
+  {
+    "dc": 1029,
+    "gn": "Pyrazinamide Tablets I.P 1000mg",
+    "us": "10's",
+    "mrp": null,
+    "avl": 1
+  },
+  {
+    "dc": 1031,
+    "gn": "Quetiapine Fumarate Tablets IP 200mg",
+    "us": "10's",
+    "mrp": 65,
+    "avl": 1
+  },
+  {
+    "dc": 1032,
+    "gn": "Quetiapine Tablets IP 100mg",
+    "us": "10's",
+    "mrp": 36,
+    "avl": 0
+  },
+  {
+    "dc": 1037,
+    "gn": "Erythropoietin Injection IP 4000 IU Pre-filled Syringe (PFS) 1ml",
+    "us": "Vial",
+    "mrp": 297,
+    "avl": 0
+  },
+  {
+    "dc": 1038,
+    "gn": "Erythropoietin Injection IP 2000 IU",
+    "us": "Vial",
+    "mrp": 230,
+    "avl": 0
+  },
+  {
+    "dc": 1041,
+    "gn": "Risperidone 4mg and Trihexiphenidyl 2mg Tablets",
+    "us": "10's",
+    "mrp": 14,
+    "avl": 0
+  },
+  {
+    "dc": 1042,
+    "gn": "Risperidone Tablets IP 4mg",
+    "us": "10's",
+    "mrp": 9,
+    "avl": 0
+  },
+  {
+    "dc": 1044,
+    "gn": "Rosuvastatin Tablets IP 5mg",
+    "us": "10's",
+    "mrp": 13,
+    "avl": 0
+  },
+  {
+    "dc": 2220,
+    "gn": "Hydroxyprogesterone Injection 500mg per 2ml",
+    "us": "2ml ampoule",
+    "mrp": null,
+    "avl": 1
+  },
+  {
+    "dc": 2221,
+    "gn": "Acarbose 50mg and Metformin Hydrochloride 500mg Tablets",
+    "us": "10's",
+    "mrp": 80,
+    "avl": 1
+  },
+  {
+    "dc": 2222,
+    "gn": "Acetylcysteine Effervescent Tablets 600mg",
+    "us": "10's",
+    "mrp": 30,
+    "avl": 0
+  },
+  {
+    "dc": 2223,
+    "gn": "Alendronate Sodium Tablets USP 70mg",
+    "us": "4's",
+    "mrp": 80,
+    "avl": 1
+  },
+  {
+    "dc": 2224,
+    "gn": "Alpha Ketoanalouge and Essential Amino Acid Tablets",
+    "us": "10's",
+    "mrp": null,
+    "avl": 0
+  },
+  {
+    "dc": 2225,
+    "gn": "Allopurinol Tablets IP 300 mg",
+    "us": "10's",
+    "mrp": null,
+    "avl": 1
+  },
+  {
+    "dc": 2226,
+    "gn": "Amisulpride Tablets IP 300mg",
+    "us": "10's",
+    "mrp": null,
+    "avl": 0
+  },
+  {
+    "dc": 2227,
+    "gn": "Amlodipine 5 mg, Losartan Potassium 50 mg & Hydrochlorothiazide 12.5 mg Tablets",
+    "us": "10's",
+    "mrp": null,
+    "avl": 0
+  },
+  {
+    "dc": 2228,
+    "gn": "Amlodipine 5mg and Perindopril 4mg Tablets",
+    "us": "10's",
+    "mrp": null,
+    "avl": 1
+  },
+  {
+    "dc": 2229,
+    "gn": "Amorphous Hydrogel Wound Dressing with Colloidal Silver",
+    "us": "15gm Tube",
+    "mrp": null,
+    "avl": 0
+  },
+  {
+    "dc": 2230,
+    "gn": "Sildenafil 50mg and Dapoxetine 30mg Tablets",
+    "us": "4's",
+    "mrp": null,
+    "avl": 0
+  },
+  {
+    "dc": 2231,
+    "gn": "Bethanechol Tablets 25mg",
+    "us": "10's",
+    "mrp": null,
+    "avl": 0
+  },
+  {
+    "dc": 2232,
+    "gn": "Estriol Cream 1mg",
+    "us": "15g Tube",
+    "mrp": null,
+    "avl": 1
+  },
+  {
+    "dc": 2233,
+    "gn": "Diltiazem Hydrochloride Gel 2%w/w",
+    "us": "30g Tube",
+    "mrp": null,
+    "avl": 0
+  },
+  {
+    "dc": 2234,
+    "gn": "Divalproex Extended-release Tablets 750mg",
+    "us": "10's",
+    "mrp": null,
+    "avl": 1
+  },
+  {
+    "dc": 2235,
+    "gn": "Recombinant Human Epidermal Growth Factor Gel 150mcg per gm",
+    "us": "15gm Tube",
+    "mrp": null,
+    "avl": 1
+  }
+]

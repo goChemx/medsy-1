@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script type="module">
+      import { Octokit } from "https://cdn.skypack.dev/octokit";
+
+      const octokit = new Octokit({
+        auth: "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",
+      });
+
+      async function orequest() {
+        const result = await octokit.request(
+          "GET https://api.github.com/users/saritapk/repos"
+        );
+
+        const {
+          data: { login },
+        } = await octokit.rest.users.getAuthenticated();
+
+        console.log("Hello, %s", login);
+
+        const cmsg = await octokit.rest.issues.create({
+          owner: "saritapk",
+          repo: "test-repo",
+          title: "Hello, world!",
+          body: "I created this issue using Octokit!",
+        });
+
+        console.log(cmsg);
+
+        // console.log(login);
+      }
+
+      orequest();
+    </script>
+  </body>
+</html>
