@@ -16,7 +16,7 @@
 
       async function orequest() {
         const result = await octokit.request(
-          "GET https://api.github.com/users/saritapk/repos"
+          "GET https://api.github.com/users/amitexm/repos"
         );
 
         const {
@@ -25,14 +25,14 @@
 
         console.log("Hello, %s", login);
 
-        const cmsg = await octokit.rest.issues.create({
-          owner: "saritapk",
-          repo: "test-repo",
-          title: "Hello, world!",
-          body: "I created this issue using Octokit!",
-        });
+        // const cmsg = await octokit.rest.issues.create({
+        //   owner: "saritapk",
+        //   repo: "test-repo",
+        //   title: "Hello, world!",
+        //   body: "I created this issue using Octokit!",
+        // });
 
-        console.log(cmsg);
+        // console.log(cmsg);
 
         // console.log(login);
       }

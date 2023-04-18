@@ -109,7 +109,6 @@ function filterMeds(value) {
   setTimeout(function generateRows() {
     const base = chunkSize * iteration;
     const loopSize = base + chunkSize;
-    let text = "";
 
     // Loop through all list items, and hide those who don't match the search query
 
