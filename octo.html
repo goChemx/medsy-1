@@ -11,13 +11,13 @@
       import { Octokit } from "https://cdn.skypack.dev/octokit";
 
       const octokit = new Octokit({
-        auth: "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",
+        auth: "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",
       });
 
       async function orequest() {
-        const result = await octokit.request(
-          "GET https://api.github.com/users/amitexm/repos"
-        );
+        // const result = await octokit.request(
+        //   "GET https://api.github.com/users/amitexm/repos"
+        // );
 
         const {
           data: { login },
@@ -34,7 +34,21 @@
 
         // console.log(cmsg);
 
-        // console.log(login);
+        // console.log(result);
+
+        const {
+          data: { sha },
+        } = await octokit.request("GET /repos/{owner}/{repo}/contents/{path}", {
+          owner: "amitexm",
+          repo: "medsy",
+          path: "assets/json/meds-min.json",
+          headers: {
+            Accept: "application/vnd.github+json",
+            "X-GitHub-Api-Version": "2022-11-28",
+          },
+        });
+
+        console.log(sha);
       }
 
       orequest();
