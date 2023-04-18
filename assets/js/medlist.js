@@ -1,3 +1,6 @@
+/**
+ * AUTO show/hide bottom nav onscroll.
+ */
 document.addEventListener("DOMContentLoaded", function () {
   const bottomNav = document.getElementById("bottomNav");
   bottomNav.style.transition = "all 0.3s ease-in-out";
@@ -16,9 +19,6 @@ document.addEventListener("DOMContentLoaded", function () {
 // const medlistBody = document.getElementById('medlistBody');
 const medlistList = document.getElementById("medlistList");
 const medlistSearchBox = document.getElementById("medlistSearchBox");
-const medlistListSearchResults = document.getElementById(
-  "medlistList-searchResults"
-);
 const medlistSearchBoxClear = document.getElementById("medlistSearchBoxClear");
 
 const loader =
@@ -93,52 +93,55 @@ function listMeds(data, toAppend) {
   }, 0);
 }
 
+function filterMeds(value) {
+  // show/hide medlist search box clear button
+  medlistSearchBoxClear.style.display = value.length != 0 ? "block" : "none";
+
+  let filter = value.toLowerCase().trim();
+
+  let li = medlistList.getElementsByTagName("li");
+
+  const rowCount = li.length;
+  const divideInto = 6;
+  const chunkSize = rowCount / divideInto;
+  let iteration = 0;
+
+  setTimeout(function generateRows() {
+    const base = chunkSize * iteration;
+    const loopSize = base + chunkSize;
+    let text = "";
+
+    // Loop through all list items, and hide those who don't match the search query
+
+    let liElm, i, txtValue;
+
+    for (i = base; i < loopSize; i++) {
+      liElm = li[i].children[0].children[0];
+
+      txtValue = liElm.textContent || liElm.innerText;
+
+      if (txtValue.toLowerCase().trim().indexOf(filter) > -1) {
+        if (li[i].hasAttribute("style")) li[i].removeAttribute("style");
+      } else if (!li[i].hasAttribute("style")) {
+        li[i].setAttribute("style", "display:none!important");
+      }
+    }
+
+    iteration++;
+
+    if (iteration < divideInto) setTimeout(generateRows, 0);
+  }, 0);
+}
+
 fetchData().then((data) => {
   listMeds(data, medlistList); //display complete list of meds.
 
   jsonMeds = data;
 
   medlistSearchBox.addEventListener("input", function (input) {
-    if (input.target.value.length >= 0) {
-      let filter = input.target.value.toLowerCase().trim();
+    let value = input.target.value;
 
-      let li = medlistList.getElementsByTagName("li");
-
-      const rowCount = li.length;
-      const divideInto = 6;
-      const chunkSize = rowCount / divideInto;
-      let iteration = 0;
-
-      setTimeout(function generateRows() {
-        const base = chunkSize * iteration;
-        const loopSize = base + chunkSize;
-        let text = "";
-
-        // Loop through all list items, and hide those who don't match the search query
-
-        let liElm, i, txtValue;
-
-        for (i = base; i < loopSize; i++) {
-          liElm = li[i].children[0].children[0];
-
-          txtValue = liElm.textContent || liElm.innerText;
-
-          if (txtValue.toLowerCase().trim().indexOf(filter) > -1) {
-            if (li[i].hasAttribute("style")) li[i].removeAttribute("style");
-          } else if (!li[i].hasAttribute("style")) {
-            li[i].setAttribute("style", "display:none!important");
-          }
-        }
-
-        iteration++;
-
-        if (iteration < divideInto) setTimeout(generateRows, 0);
-      }, 0);
-    }
-
-    // medlist search box clear button
-    medlistSearchBoxClear.style.display =
-      medlistSearchBox.value.length != 0 ? "block" : "none";
+    filterMeds(value);
   });
 });
 
@@ -271,6 +274,7 @@ medlistUpdateQueueDialog.addEventListener("click", function (e) {
 
 // // medlist search box clear button
 
-// medlistSearchBoxClear.addEventListener('click', function () {
-//   medlistSearchBox.value = "";
-// });
+medlistSearchBoxClear.addEventListener("click", function () {
+  medlistSearchBox.value = "";
+  filterMeds(medlistSearchBox.value);
+});
