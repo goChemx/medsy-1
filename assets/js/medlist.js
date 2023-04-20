@@ -132,16 +132,34 @@ function filterMeds(value) {
   }, 0);
 }
 
+function debounce(func, timeout = 400) {
+  let timer;
+  return (...args) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      func.apply(this, args);
+    }, timeout);
+  };
+}
+
 fetchData().then((data) => {
-  listMeds(data, medlistList); //display complete list of meds.
+  listMeds(data, medlistList);
 
   jsonMeds = data;
 
-  medlistSearchBox.addEventListener("input", function (input) {
-    let value = input.target.value;
+  // medlistSearchBox.addEventListener("input", function (input) {
+  //   let value = input.target.value;
 
-    filterMeds(value);
-  });
+  //   filterMeds(value);
+  // });
+
+  medlistSearchBox.addEventListener(
+    "input",
+    debounce((input) => {
+      let value = input.target.value;
+      filterMeds(value);
+    })
+  );
 });
 
 /**
