@@ -1,8 +1,8 @@
 /**
  * AUTO show/hide bottom nav onscroll.
  */
+const bottomNav = document.getElementById("bottomNav");
 document.addEventListener("DOMContentLoaded", function () {
-  const bottomNav = document.getElementById("bottomNav");
   bottomNav.style.transition = "all 0.3s ease-in-out";
   let prevScrollpos = window.pageYOffset;
   window.onscroll = function () {
