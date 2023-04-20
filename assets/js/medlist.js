@@ -147,12 +147,6 @@ fetchData().then((data) => {
 
   jsonMeds = data;
 
-  // medlistSearchBox.addEventListener("input", function (input) {
-  //   let value = input.target.value;
-
-  //   filterMeds(value);
-  // });
-
   medlistSearchBox.addEventListener(
     "input",
     debounce((input) => {
