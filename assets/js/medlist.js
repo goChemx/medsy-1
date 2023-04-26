@@ -29,7 +29,7 @@ let jsonMeds = [];
 
 async function fetchData() {
 
-  const jsonMedsData = [], jsonMedsAvl = [];
+  let jsonMedsData = [], jsonMedsAvl = [];
 
   const medsDataResponse = await fetch('/assets/json/meds-data-min.json');
   jsonMedsData = await medsDataResponse.json();
