@@ -25,7 +25,7 @@ const loader =
   '<img class="mx-auto mt-5" style="width:200px; height:200px;" src="assets/images/loader.gif"></img>';
 window.onload = medlistList.innerHTML = loader;
 
-let jsonMeds = [];
+let jsonMeds = []; 
 
 async function fetchData() {
 
