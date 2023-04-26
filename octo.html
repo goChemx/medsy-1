@@ -11,7 +11,7 @@
       import { Octokit } from "https://cdn.skypack.dev/octokit";
 
       const octokit = new Octokit({
-        auth: "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",
+        auth: "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",
       });
 
       async function orequest() {
@@ -35,20 +35,26 @@
 
         console.log(sha);
 
-        await octokit.request("PUT /repos/{owner}/{repo}/contents/{path}", {
-          owner: "amitexm",
-          repo: "medsy",
-          path: "assets/json/meds-test3.json",
-          message: "change avl",
-          committer: {
-            name: "amitexm",
-            email: "amitexm@github.com",
-          },
-          content: "bXkgbmV3IGZpbGUgY29udGVudHM=",
-          headers: {
-            "X-GitHub-Api-Version": "2022-11-28",
-          },
-        });
+        const updateReq = await octokit.request(
+          "PUT /repos/{owner}/{repo}/contents/{path}",
+          {
+            owner: "amitexm",
+            repo: "medsy",
+            path: "assets/json/meds-test3.json",
+            message: "change avl",
+            committer: {
+              name: "amitexm",
+              email: "amitexm@github.com",
+            },
+            content: "bmV3IGZpbGUgY29udGVudCB1cGRhdGVk",
+            sha: "0d5a690c8fad5e605a6e8766295d9d459d65de42",
+            headers: {
+              "X-GitHub-Api-Version": "2022-11-28",
+            },
+          }
+        );
+
+        console.log(updateReq);
       }
 
       orequest();

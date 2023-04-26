@@ -27,6 +27,10 @@ window.onload = medlistList.innerHTML = loader;
 
 let jsonMeds = [];
 
+let jsonMedsData = [];
+
+let jsonMedsAvl = [];
+
 async function fetchData() {
   // fetch meds.json (array of objects).
 
@@ -35,10 +39,13 @@ async function fetchData() {
   const response = await fetch(url);
 
   if (response.status === 200) {
-    return response.json(); // return response as js object.
+    
+    return jsonMeds = await response.json(); // return response as js object.
+
   } else {
-    return 0;
+      return 0;
   }
+
 }
 
 function listMeds(data, toAppend) {
@@ -143,18 +150,46 @@ function debounce(func, timeout = 400) {
 }
 
 fetchData().then((data) => {
+  
   listMeds(data, medlistList);
 
-  jsonMeds = data;
-
-  medlistSearchBox.addEventListener(
-    "input",
-    debounce((input) => {
-      let value = input.target.value;
+  medlistSearchBox.addEventListener("input", (input) => {
+    let value = input.target.value;
+    debounce(() => {
       filterMeds(value);
-    })
-  );
+    });
+  });
+
+  // jsonMedsData = jsonMeds.map(item => {
+  //   return {
+  //           "dc": parseInt(item.dc),
+  //           "gn": item.gn,
+  //           "us": item.us,
+  //           "mrp": parseInt(item.mrp)
+  //          }
+  //   });
+  // console.log(JSON.stringify(jsonMedsData));
+  // console.log(JSON.stringify(jsonMedsData.sort((a, b) => a.dc - b.dc)));
+
+
+  // jsonMedsAvl = jsonMeds.map(item => {
+  //   return {
+  //     "dc": parseInt(item.dc),
+  //     "avl": item.avl
+  //          }
+  //   });
+  // console.log(JSON.stringify(jsonMedsAvl));
+  // console.log(JSON.stringify(jsonMedsAvl.sort((a, b) => a.dc - b.dc)));
+
+  
+
+
+
+
+
 });
+
+
 
 /**
  * Logged In
