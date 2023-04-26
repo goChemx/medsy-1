@@ -27,11 +27,9 @@ window.onload = medlistList.innerHTML = loader;
 
 let jsonMeds = [];
 
-let jsonMedsData = [];
-
-let jsonMedsAvl = [];
-
 async function fetchData() {
+
+  const jsonMedsData = [], jsonMedsAvl = [];
 
   const medsDataResponse = await fetch('/assets/json/meds-data-min.json');
   jsonMedsData = await medsDataResponse.json();
