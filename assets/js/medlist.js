@@ -27,9 +27,11 @@ window.onload = medlistList.innerHTML = loader;
 
 let jsonMeds = [];
 
-async function fetchData() {
+let jsonMedsData = [];
 
-  let jsonMedsData = [], jsonMedsAvl = [];
+let jsonMedsAvl = [];
+
+async function fetchData() {
 
   const medsDataResponse = await fetch('/assets/json/meds-data-min.json');
   jsonMedsData = await medsDataResponse.json();
@@ -42,7 +44,7 @@ async function fetchData() {
     jsonMeds.push({...jsonMedsData[i], ...(jsonMedsAvl.find((item) => item.dc === jsonMedsData[i].dc))});
   
   }
-  
+  console.log(jsonMeds);
   return jsonMeds;
 
 }
@@ -100,8 +102,6 @@ function listMeds(data, toAppend) {
 }
 
 function filterMeds(value) {
-  // show/hide medlist search box clear button
-  medlistSearchBoxClear.style.display = value.length != 0 ? "block" : "none";
 
   let filter = value.toLowerCase().trim();
 
@@ -138,25 +138,37 @@ function filterMeds(value) {
   }, 0);
 }
 
-function debounce(func, timeout = 400) {
-  let timer;
-  return (...args) => {
-    clearTimeout(timer);
-    timer = setTimeout(() => {
-      func.apply(this, args);
-    }, timeout);
-  };
-}
+// function debounce(func, timeout = 300) {
+//   let timer;
+//   return (...args) => {
+//     clearTimeout(timer);
+//     timer = setTimeout(() => {
+//       func.apply(this, args);
+//     }, timeout);
+//   };
+// }
 
 fetchData().then((data) => {
   
   listMeds(data, medlistList);
 
+  let timer;
+
   medlistSearchBox.addEventListener("input", (input) => {
+    
     let value = input.target.value;
-    debounce(() => {
+    
+    medlistSearchBoxClear.style.display = value.length != 0 ? "block" : "none";
+
+    clearTimeout(timer);
+
+    timer = setTimeout(() => {
       filterMeds(value);
-    });
+    }, 300);
+   
+    // debounce(() => {
+    //   filterMeds(value);
+    // });
   });
 
   // jsonMedsData = jsonMeds.map(item => {
@@ -179,12 +191,6 @@ fetchData().then((data) => {
   //   });
   // console.log(JSON.stringify(jsonMedsAvl));
   // console.log(JSON.stringify(jsonMedsAvl.sort((a, b) => a.dc - b.dc)));
-
-  
-
-
-
-
 
 });
 
@@ -319,7 +325,7 @@ medlistUpdateQueueDialog.addEventListener("click", function (e) {
 
 // // medlist search box clear button
 
-medlistSearchBoxClear.addEventListener("click", function () {
+medlistSearchBoxClear.addEventListener("click", () => {
   medlistSearchBox.value = "";
-  filterMeds(medlistSearchBox.value);
+  medlistSearchBox.dispatchEvent(new Event('input', {bubbles:true}));
 });
