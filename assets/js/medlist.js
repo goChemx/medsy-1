@@ -27,24 +27,23 @@ window.onload = medlistList.innerHTML = loader;
 
 let jsonMeds = [];
 
-let jsonMedsData = [];
-
-let jsonMedsAvl = [];
-
 async function fetchData() {
-  // fetch meds.json (array of objects).
 
-  const url = "/assets/json/meds-min.json";
+  let jsonMedsData = [], jsonMedsAvl = [];
 
-  const response = await fetch(url);
+  const medsDataResponse = await fetch('/assets/json/meds-data-min.json');
+  jsonMedsData = await medsDataResponse.json();
 
-  if (response.status === 200) {
+  const medsAvlResponse = await fetch('/assets/json/meds-avl-min.json');
+  jsonMedsAvl = await medsAvlResponse.json();
+  
+  for(let i=0; i < jsonMedsData.length; i++) {
     
-    return jsonMeds = await response.json(); // return response as js object.
-
-  } else {
-      return 0;
+    jsonMeds.push({...jsonMedsData[i], ...(jsonMedsAvl.find((item) => item.dc === jsonMedsData[i].dc))});
+  
   }
+  
+  return jsonMeds;
 
 }
 
