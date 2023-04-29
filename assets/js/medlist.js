@@ -2,19 +2,17 @@
  * AUTO show/hide bottom nav onscroll.
  */
 const bottomNav = document.getElementById("bottomNav");
-document.addEventListener("DOMContentLoaded", function () {
-  bottomNav.style.transition = "all 0.3s ease-in-out";
-  let prevScrollpos = window.pageYOffset;
-  window.onscroll = function () {
-    let currentScrollPos = window.pageYOffset;
-    if (prevScrollpos > currentScrollPos) {
-      bottomNav.style.transform = "translateY(100%)";
-    } else {
-      bottomNav.style.transform = "translateY(0)";
-    }
-    prevScrollpos = currentScrollPos;
-  };
-});
+bottomNav.style.transition = "all 0.3s ease-in-out";
+let prevScrollpos = window.pageYOffset;
+window.onscroll = function () {
+  let currentScrollPos = window.pageYOffset;
+  if (prevScrollpos > currentScrollPos) {
+    bottomNav.style.transform = "translateY(100%)";
+  } else {
+    bottomNav.style.transform = "translateY(0)";
+  }
+  prevScrollpos = currentScrollPos;
+};
 
 // const medlistBody = document.getElementById('medlistBody');
 const medlistList = document.getElementById("medlistList");
@@ -25,11 +23,11 @@ const loader =
   '<img class="mx-auto mt-5" style="width:200px; height:200px;" src="assets/images/loader.gif"></img>';
 window.onload = medlistList.innerHTML = loader;
 
-let jsonMeds = []; 
+let jsonMeds = [], jsonMedsAvl = []; 
 
 async function fetchData() {
 
-  let jsonMedsData = [], jsonMedsAvl = [];
+  let jsonMedsData = [];
 
   const medsDataResponse = await fetch('/assets/json/meds-data-min.json');
   jsonMedsData = await medsDataResponse.json();
@@ -138,10 +136,10 @@ function filterMeds(value) {
 
 // function debounce(func, timeout = 300) {
 //   let timer;
-//   return (...args) => {
+//   return () => {
 //     clearTimeout(timer);
 //     timer = setTimeout(() => {
-//       func.apply(this, args);
+//       func.apply();
 //     }, timeout);
 //   };
 // }
@@ -327,3 +325,92 @@ medlistSearchBoxClear.addEventListener("click", () => {
   medlistSearchBox.value = "";
   medlistSearchBox.dispatchEvent(new Event('input', {bubbles:true}));
 });
+
+// function loadOcto() {
+//   const scriptTag = document.createElement("script");
+//   scriptTag.setAttribute('type', 'module');
+//   const textNode = document.createTextNode("import { Octokit } from 'https://cdn.skypack.dev/octokit';");
+//   scriptTag.appendChild(textNode);
+//   document.body.appendChild(scriptTag);
+//   // scriptTag.remove()
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import { Octokit } from "https://cdn.skypack.dev/octokit";
+
+const octokit = new Octokit({
+  auth: "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",
+});
+
+async function orequest() {
+  const {
+    data: { login },
+  } = await octokit.rest.users.getAuthenticated();
+
+  console.log("Hello, %s", login);
+
+  const {
+    data: { sha },
+  } = await octokit.request("GET /repos/{owner}/{repo}/contents/{path}", {
+    owner: "amitexm",
+    repo: "medsy",
+    path: "assets/json/meds-test3.json",
+    headers: {
+      Accept: "application/vnd.github+json",
+      "X-GitHub-Api-Version": "2022-11-28",
+    },
+  });
+
+  console.log(sha);
+
+  const updateReq = await octokit.request(
+    "PUT /repos/{owner}/{repo}/contents/{path}",
+    {
+      owner: "amitexm",
+      repo: "medsy",
+      path: "assets/json/meds-test3.json",
+      message: "change avl",
+      committer: {
+        name: "amitexm",
+        email: "amitexm@github.com",
+      },
+      content: "bmV3IGZpbGUgY29udGVudCB1cGRhdGVk",
+      sha: sha,
+      headers: {
+        "X-GitHub-Api-Version": "2022-11-28",
+      },
+    }
+  );
+
+  console.log(updateReq);
+}
+
+orequest();
+
+
+
+
+
