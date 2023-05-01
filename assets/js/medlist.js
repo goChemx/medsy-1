@@ -23,26 +23,26 @@ const loader =
   '<img class="mx-auto mt-5" style="width:200px; height:200px;" src="assets/images/loader.gif"></img>';
 window.onload = medlistList.innerHTML = loader;
 
-let jsonMeds = [], jsonMedsAvl = []; 
+let jsonMeds = [],
+  jsonMedsAvl = [];
 
 async function fetchData() {
-
   let jsonMedsData = [];
 
-  const medsDataResponse = await fetch('/assets/json/meds-data-min.json');
+  const medsDataResponse = await fetch("/assets/json/meds-data-min.json");
   jsonMedsData = await medsDataResponse.json();
 
-  const medsAvlResponse = await fetch('/assets/json/meds-avl-min.json');
+  const medsAvlResponse = await fetch("/assets/json/meds-avl-min.json");
   jsonMedsAvl = await medsAvlResponse.json();
-  
-  for(let i=0; i < jsonMedsData.length; i++) {
-    
-    jsonMeds.push({...jsonMedsData[i], ...(jsonMedsAvl.find((item) => item.dc === jsonMedsData[i].dc))});
-  
+
+  for (let i = 0; i < jsonMedsData.length; i++) {
+    jsonMeds.push({
+      ...jsonMedsData[i],
+      ...jsonMedsAvl.find((item) => item.dc === jsonMedsData[i].dc),
+    });
   }
   console.log(jsonMeds);
   return jsonMeds;
-
 }
 
 function listMeds(data, toAppend) {
@@ -98,7 +98,6 @@ function listMeds(data, toAppend) {
 }
 
 function filterMeds(value) {
-
   let filter = value.toLowerCase().trim();
 
   let li = medlistList.getElementsByTagName("li");
@@ -145,15 +144,13 @@ function filterMeds(value) {
 // }
 
 fetchData().then((data) => {
-  
   listMeds(data, medlistList);
 
   let timer;
 
   medlistSearchBox.addEventListener("input", (input) => {
-    
     let value = input.target.value;
-    
+
     medlistSearchBoxClear.style.display = value.length != 0 ? "block" : "none";
 
     clearTimeout(timer);
@@ -161,7 +158,7 @@ fetchData().then((data) => {
     timer = setTimeout(() => {
       filterMeds(value);
     }, 300);
-   
+
     // debounce(() => {
     //   filterMeds(value);
     // });
@@ -178,7 +175,6 @@ fetchData().then((data) => {
   // console.log(JSON.stringify(jsonMedsData));
   // console.log(JSON.stringify(jsonMedsData.sort((a, b) => a.dc - b.dc)));
 
-
   // jsonMedsAvl = jsonMeds.map(item => {
   //   return {
   //     "dc": parseInt(item.dc),
@@ -187,10 +183,7 @@ fetchData().then((data) => {
   //   });
   // console.log(JSON.stringify(jsonMedsAvl));
   // console.log(JSON.stringify(jsonMedsAvl.sort((a, b) => a.dc - b.dc)));
-
 });
-
-
 
 /**
  * Logged In
@@ -323,7 +316,7 @@ medlistUpdateQueueDialog.addEventListener("click", function (e) {
 
 medlistSearchBoxClear.addEventListener("click", () => {
   medlistSearchBox.value = "";
-  medlistSearchBox.dispatchEvent(new Event('input', {bubbles:true}));
+  medlistSearchBox.dispatchEvent(new Event("input", { bubbles: true }));
 });
 
 // function loadOcto() {
@@ -334,30 +327,6 @@ medlistSearchBoxClear.addEventListener("click", () => {
 //   document.body.appendChild(scriptTag);
 //   // scriptTag.remove()
 // }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 import { Octokit } from "https://cdn.skypack.dev/octokit";
 
@@ -409,8 +378,3 @@ async function orequest() {
 }
 
 orequest();
-
-
-
-
-
