@@ -1,18 +1,41 @@
-/**
- * AUTO show/hide bottom nav onscroll.
- */
-const bottomNav = document.getElementById("bottomNav");
-bottomNav.style.transition = "all 0.3s ease-in-out";
-let prevScrollpos = window.pageYOffset;
-window.onscroll = function () {
-  let currentScrollPos = window.pageYOffset;
-  if (prevScrollpos > currentScrollPos) {
-    bottomNav.style.transform = "translateY(100%)";
+const loggedIn = localStorage.getItem("cred") ? true : false;
+
+const login = async (pass) => {
+  const cipher = "U2FsdGVkX1/dZREdMDBplf+iAT4QaPaiPnT7nwKNMMxUB0LsFqiYtNMQTh+k+08EEAFZFHtT9QlFBND7dTsV5Q==";
+  const cred = CryptoJS.AES.decrypt(cipher, pass).toString(CryptoJS.enc.Utf8);
+  octokit = new Octokit({ auth: cred });
+  const { data: { login } } = await octokit.rest.users.getAuthenticated();
+  if (login == "amitexm") {
+    localStorage.setItem("cred", "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");
+    window.location.reload();
   } else {
-    bottomNav.style.transform = "translateY(0)";
+    localStorage.removeItem("cred");
   }
-  prevScrollpos = currentScrollPos;
-};
+}
+
+// login("janaushadhimrj");
+
+
+console.log(localStorage.getItem('cred'));
+
+
+if (loggedIn) {
+  const bottomNav = document.getElementById("bottomNav");
+  bottomNav.classList.remove("d-none");
+  //  AUTO show/hide bottom nav onscroll.
+  bottomNav.style.transition = "all 0.3s ease-in-out";
+  let prevScrollpos = window.pageYOffset;
+  window.onscroll = function () {
+    let currentScrollPos = window.pageYOffset;
+    if (prevScrollpos > currentScrollPos) {
+      bottomNav.style.transform = "translateY(100%)";
+    } else {
+      bottomNav.style.transform = "translateY(0)";
+    }
+    prevScrollpos = currentScrollPos;
+  };
+}
+
 
 // const medlistBody = document.getElementById('medlistBody');
 const medlistList = document.getElementById("medlistList");
@@ -68,22 +91,19 @@ function listMeds(data, toAppend) {
     for (let i = base; i < loopSize; i++) {
       text =
         text +
-        `<li class="list-group-item d-flex pb-3 ps-2 ${
-          data[i].avl ? "list-group-item-success" : "list-group-item-danger"
+        `<li class="list-group-item d-flex pb-3 ps-2 ${data[i].avl ? "list-group-item-success" : "list-group-item-danger"
         }">
                       <div class="ms-2 w-100">
                         <div>${data[i].gn}</div>
                         <div class="d-flex justify-content-between text-muted pe-2">
                           <small>(${data[i].dc})</small>
                           <small>${data[i].us}</small>
-                          <small>${
-                            data[i].mrp
-                              ? "Rs. " + data[i].mrp
-                              : "Under Processing"
-                          }</small>
-                          <input id="mcb" type="checkbox" data-dc="${
-                            data[i].dc
-                          }" ${data[i].avl ? "checked" : ""}>
+                          <small>${data[i].mrp
+          ? "Rs. " + data[i].mrp
+          : "Under Processing"
+        }</small>
+                          <input id="mcb" type="checkbox" data-dc="${data[i].dc
+        }" ${data[i].avl ? "checked" : ""}>
                         </div>
                       </div>
                     </li>`;
@@ -253,10 +273,9 @@ btnUpdationQueue.addEventListener("click", function () {
   for (let i = 0; i < updationQueue.length; i++) {
     text =
       text +
-      `<li class="list-group-item d-flex pb-3 ps-2 ${
-        updationQueue[i].avl
-          ? "list-group-item-success"
-          : "list-group-item-danger"
+      `<li class="list-group-item d-flex pb-3 ps-2 ${updationQueue[i].avl
+        ? "list-group-item-success"
+        : "list-group-item-danger"
       }">
                       <div>${i + 1}. </div>
                       <div class="ms-2 w-100">
@@ -264,14 +283,12 @@ btnUpdationQueue.addEventListener("click", function () {
                       <div class="d-flex justify-content-between text-muted pe-2">
                         <small>(${updationQueue[i].dc})</small>
                         <small>${updationQueue[i].us}</small>
-                        <small>${
-                          updationQueue[i].mrp
-                            ? "Rs. " + updationQueue[i].mrp
-                            : "Under Processing"
-                        }</small>
-                        <input id="mcb" type="checkbox" data-dc="${
-                          updationQueue[i].dc
-                        }" ${updationQueue[i].avl ? "checked" : ""}>
+                        <small>${updationQueue[i].mrp
+        ? "Rs. " + updationQueue[i].mrp
+        : "Under Processing"
+      }</small>
+                        <input id="mcb" type="checkbox" data-dc="${updationQueue[i].dc
+      }" ${updationQueue[i].avl ? "checked" : ""}>
                       </div>
                     </div>
                   </li>`;
@@ -329,10 +346,50 @@ medlistSearchBoxClear.addEventListener("click", () => {
 // }
 
 import { Octokit } from "https://cdn.skypack.dev/octokit";
+let octokit;
 
-const octokit = new Octokit({
-  auth: "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",
-});
+// const enCred = (pass) => {
+//   return CryptoJS.AES.encrypt("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", pass).toString();
+// };
+
+
+// console.log(enCred("janaushadhimrj"));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 async function orequest() {
   const {
@@ -375,6 +432,7 @@ async function orequest() {
   );
 
   console.log(updateReq);
+
 }
 
 orequest();
