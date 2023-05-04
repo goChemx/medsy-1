@@ -13,8 +13,6 @@ const login = async (pass) => {
   }
 }
 
-// login("janaushadhimrj");
-
 
 console.log(localStorage.getItem('cred'));
 
@@ -52,7 +50,7 @@ let jsonMeds = [],
 async function fetchData() {
   let jsonMedsData = [];
 
-  const medsDataResponse = await fetch("/assets/json/meds-data-min.json");
+  const medsDataResponse = await fetch("/assets/json/meds-test.json");
   jsonMedsData = await medsDataResponse.json();
 
   const medsAvlResponse = await fetch("/assets/json/meds-avl-min.json");
