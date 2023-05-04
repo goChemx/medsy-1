@@ -23,7 +23,7 @@
 <body>
   <div class="wrapper">
     <!-- Navbar Section -->
-    <nav id="topNav" class="navbar navbar-light bg-light border-bottom px-2">
+    <nav id="topNav" class="navbar bg-body-tertiary border-bottom px-2">
       <div class="container">
         <a class="navbar-brand fs-2" href="/">Medsy.</a>
 
@@ -40,8 +40,7 @@
         <div class="collapse navbar-collapse" id="navbarContent">
           <ul class="navbar-nav ms-auto navbar-right">
             <li class="nav-item fs-5">
-              <a type="button" class="nav-link js-scroll-trigger" data-bs-toggle="modal" data-bs-target="#modalSignin"
-                href="#">Login</a>
+              <a type="button" class="nav-link" data-bs-toggle="modal" data-bs-target="#modalSignin" href="#">Login</a>
             </li>
             <!-- <li class="nav-item fs-5"><a class="nav-link js-scroll-trigger" href="/vaccine-alerts.html">Vaccine Alerts</a></li>
               <li class="nav-item fs-5"><a class="nav-link js-scroll-trigger" href="/covid19-news.html">Covid-19 News</a></li> -->
@@ -54,8 +53,7 @@
     <!-- Main -->
     <div id="main" class="main">
       <div id="medlistBody" class="container-sm pb-5 mb-3">
-        <div id="medlistSearch" class="input-group py-2"
-          style="position: sticky;top: 0px;background: #f6f6fd;z-index: 1020;">
+        <div id="medlistSearch" class="input-group py-2 bg-body" style="position: sticky; top: 0px; z-index: 1020;">
           <svg style="position: absolute; z-index: 1020; margin: 12px" width="20" height="20" viewBox="0 0 20 20">
             <path
               d="M14.386 14.386l4.0877 4.0877-4.0877-4.0877c-2.9418 2.9419-7.7115 2.9419-10.6533 0-2.9419-2.9418-2.9419-7.7115 0-10.6533 2.9418-2.9419 7.7115-2.9419 10.6533 0 2.9419 2.9418 2.9419 7.7115 0 10.6533z"
@@ -126,31 +124,32 @@
 
   <!-- Login Modal -->
 
-  <div class="modal bg-body-secondary p-4 py-md-5" tabindex="-1" id="modalSignin" data-bs-backdrop="static"
+  <div class="modal bg-body-secondary p-2 py-md-5" tabindex="-1" id="modalSignin" data-bs-backdrop="static"
     data-bs-keyboard="false">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content rounded-4 shadow">
 
         <div class="modal-header p-4 pb-4 border-bottom-0">
-          <h1 class="fw-bold mb-0 fs-2">LOGIN</h1>
+          <h1 class="fw-bold mb-0 fs-2 ms-2">LOGIN</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 
         <div class="modal-body p-4 pt-0">
           <form class="needs-validation" novalidate>
-            <div class="form-floating mb-3">
-              <input type="email" class="form-control rounded-3" id="emailInput" placeholder=" " required>
+            <div class="form-floating mb-4">
+              <input type="email" class="form-control rounded-3 mb-2 fs-5" id="emailInput" placeholder=" " required>
               <label for="emailInput" class="form-label">Email address</label>
               <!-- <div class="valid-feedback"> Looks good!</div> -->
               <div class="invalid-feedback">Please provide a valid Email.</div>
             </div>
-            <div class="form-floating mb-3">
-              <input type="password" class="form-control rounded-3" id="passwordInput" placeholder=" " required>
+            <div class="form-floating mb-4">
+              <input type="password" class="form-control rounded-3 mb-2 fs-5" id="passwordInput" placeholder=" "
+                required>
               <label for="passwordInput" class="form-label">Password</label>
               <!-- <div class="valid-feedback"> Looks good!</div> -->
               <div class="invalid-feedback">Password can't be Empty.</div>
             </div>
-            <div class="form-check mb-3 ms-1">
+            <div class="form-check mb-4 ms-1">
               <input class="form-check-input" type="checkbox" value="" id="rememberMeCheck" checked>
               <label class="form-check-label" for="rememberMeCheck">
                 Remember Me
