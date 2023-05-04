@@ -1,5 +1,9 @@
 const loggedIn = localStorage.getItem("cred") ? true : false;
 
+import { Octokit } from "https://cdn.skypack.dev/octokit";
+let octokit;
+
+
 const login = async (pass) => {
   const cipher = "U2FsdGVkX1/dZREdMDBplf+iAT4QaPaiPnT7nwKNMMxUB0LsFqiYtNMQTh+k+08EEAFZFHtT9QlFBND7dTsV5Q==";
   const cred = CryptoJS.AES.decrypt(cipher, pass).toString(CryptoJS.enc.Utf8);
@@ -7,12 +11,13 @@ const login = async (pass) => {
   const { data: { login } } = await octokit.rest.users.getAuthenticated();
   if (login == "amitexm") {
     localStorage.setItem("cred", "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");
-    window.location.reload();
+    // window.location.reload();
   } else {
     localStorage.removeItem("cred");
   }
-}
+};
 
+// login("janaushadhimrj");
 
 console.log(localStorage.getItem('cred'));
 
@@ -343,8 +348,7 @@ medlistSearchBoxClear.addEventListener("click", () => {
 //   // scriptTag.remove()
 // }
 
-import { Octokit } from "https://cdn.skypack.dev/octokit";
-let octokit;
+
 
 // const enCred = (pass) => {
 //   return CryptoJS.AES.encrypt("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", pass).toString();
@@ -433,4 +437,32 @@ async function orequest() {
 
 }
 
-orequest();
+// orequest();
+
+
+// console.log("hello");
+
+
+(() => {
+  'use strict'
+
+
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  const loginForm = document.querySelector(".needs-validation");
+
+  console.log(loginForm.checkValidity());
+
+
+  // Loop over them and prevent submission
+
+  loginForm.addEventListener('submit', (event) => {
+    console.log("hello");
+    if (!loginForm.checkValidity()) {
+      event.preventDefault()
+      event.stopPropagation()
+    }
+
+    loginForm.classList.add('was-validated')
+  }, false)
+})()
