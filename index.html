@@ -38,11 +38,11 @@
           </svg>
         </button>
 
-        <div class="collapse navbar-collapse mt-md-2" style="margin: -6px -6px;" id="navbarContent">
-          <ul class="navbar-nav pb-3">
-            <li class="nav-item fs-5 mx-auto mt-2">
-              <a type="button" class="nav-link fw-light" data-bs-toggle="modal" data-bs-target="#modalSignin"
-                href="#">Login</a>
+        <div class="collapse navbar-collapse" style="margin: 9px -6px !important;" id="navbarContent">
+          <ul class="navbar-nav pb-3 mt-0">
+            <li class="nav-item fs-5 mx-auto mt-3">
+              <a type="button" class="btn nav-link fw-light border border-1 px-4 py-1" data-bs-toggle="modal"
+                data-bs-target="#modalSignin" href="#">Login</a>
             </li>
             <!-- <li class="nav-item fs-5"><a class="nav-link js-scroll-trigger" href="/vaccine-alerts.html">Vaccine Alerts</a></li>
               <li class="nav-item fs-5"><a class="nav-link js-scroll-trigger" href="/covid19-news.html">Covid-19 News</a></li> -->
@@ -133,32 +133,32 @@
       <div class="modal-content border-0 shadow">
 
         <div class="modal-header p-4 pb-4 border-bottom-0">
-          <h1 class="fw-bold mb-0 fs-2 ms-2">LOGIN</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <h1 class="fw-light mb-0 fs-1 ms-2">Login</h1>
+          <button type="button" class="btn-close p-3" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 
         <div class="modal-body p-4 pt-0">
           <form class="needs-validation" novalidate>
             <div class="form-floating mb-4">
               <input type="email" class="form-control mb-2 fs-5 fw-light" id="emailInput" placeholder=" " required>
-              <label for="emailInput" class="form-label">Email address</label>
+              <label for="emailInput" class="form-label fw-light">Email address</label>
               <!-- <div class="valid-feedback"> Looks good!</div> -->
               <div class="invalid-feedback">Please provide a valid Email.</div>
             </div>
             <div class="form-floating mb-4">
               <input type="password" class="form-control mb-2 fs-5 fw-light" id="passwordInput" placeholder=" "
                 required>
-              <label for="passwordInput" class="form-label">Password</label>
+              <label for="passwordInput" class="form-label fw-light">Password</label>
               <!-- <div class="valid-feedback"> Looks good!</div> -->
               <div class="invalid-feedback">Password can't be Empty.</div>
             </div>
             <div class="form-check mb-4 ms-1">
               <input class="form-check-input" type="checkbox" value="" id="rememberMeCheck" checked>
-              <label class="form-check-label" for="rememberMeCheck">
+              <label class="form-check-label fw-light" for="rememberMeCheck">
                 Remember Me
               </label>
             </div>
-            <button class="w-100 mb-2 btn btn-lg btn-primary" type="submit">Sign In</button>
+            <button class="w-100 mb-2 btn btn-lg btn-outline-primary" type="submit">Sign In</button>
           </form>
         </div>
       </div>
