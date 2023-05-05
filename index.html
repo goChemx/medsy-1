@@ -23,7 +23,7 @@
 <body>
   <div class="wrapper">
     <!-- Navbar Section -->
-    <nav id="topNav" class="navbar bg-body-tertiary border-bottom px-2">
+    <nav id="topNav" class="navbar bg-body-tertiary border-bottom p-2">
       <div class="container">
         <a class="navbar-brand fs-2" href="/">Medsy.</a>
 
@@ -38,9 +38,10 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarContent">
-          <ul class="navbar-nav ms-auto navbar-right">
+          <ul class="navbar-nav me-auto">
             <li class="nav-item fs-5">
-              <a type="button" class="nav-link" data-bs-toggle="modal" data-bs-target="#modalSignin" href="#">Login</a>
+              <a type="button" class="nav-link fw-light" data-bs-toggle="modal" data-bs-target="#modalSignin"
+                href="#">Login</a>
             </li>
             <!-- <li class="nav-item fs-5"><a class="nav-link js-scroll-trigger" href="/vaccine-alerts.html">Vaccine Alerts</a></li>
               <li class="nav-item fs-5"><a class="nav-link js-scroll-trigger" href="/covid19-news.html">Covid-19 News</a></li> -->
@@ -137,14 +138,15 @@
         <div class="modal-body p-4 pt-0">
           <form class="needs-validation" novalidate>
             <div class="form-floating mb-4">
-              <input type="email" class="form-control rounded-3 mb-2 fs-5" id="emailInput" placeholder=" " required>
+              <input type="email" class="form-control rounded-3 mb-2 fs-5 fw-light" id="emailInput" placeholder=" "
+                required>
               <label for="emailInput" class="form-label">Email address</label>
               <!-- <div class="valid-feedback"> Looks good!</div> -->
               <div class="invalid-feedback">Please provide a valid Email.</div>
             </div>
             <div class="form-floating mb-4">
-              <input type="password" class="form-control rounded-3 mb-2 fs-5" id="passwordInput" placeholder=" "
-                required>
+              <input type="password" class="form-control rounded-3 mb-2 fs-5 fw-light" id="passwordInput"
+                placeholder=" " required>
               <label for="passwordInput" class="form-label">Password</label>
               <!-- <div class="valid-feedback"> Looks good!</div> -->
               <div class="invalid-feedback">Password can't be Empty.</div>
