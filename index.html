@@ -23,7 +23,7 @@
 <body>
   <div class="wrapper">
     <!-- Navbar Section -->
-    <nav id="topNav" class="navbar bg-body-tertiary border-bottom p-2">
+    <nav id="topNav" class="navbar bg-body-tertiary border-bottom p-2 fixed-top">
       <div class="container">
         <a class="navbar-brand fs-2" href="/">Medsy.</a>
 
@@ -54,7 +54,7 @@
     <!-- Main -->
     <div id="main" class="main">
       <div id="medlistBody" class="container-sm pb-5 mb-3">
-        <div id="medlistSearch" class="input-group py-2 bg-body" style="position: sticky; top: 0px; z-index: 1020;">
+        <div id="medlistSearch" class="input-group py-2 bg-body sticky-top" style="top: 52px; z-index: 1020;">
           <svg style="position: absolute; z-index: 1020; margin: 12px" width="20" height="20" viewBox="0 0 20 20">
             <path
               d="M14.386 14.386l4.0877 4.0877-4.0877-4.0877c-2.9418 2.9419-7.7115 2.9419-10.6533 0-2.9419-2.9418-2.9419-7.7115 0-10.6533 2.9418-2.9419 7.7115-2.9419 10.6533 0 2.9419 2.9418 2.9419 7.7115 0 10.6533z"
@@ -72,7 +72,7 @@
           </svg>
         </div>
 
-        <div id="medlistList" class="list-group list-group-flush d-grid gap-2 lh-base"></div>
+        <div id="medlistList" class="list-group list-group-flush d-grid gap-2 lh-base pt-5"></div>
       </div>
     </div>
     <!-- Main End -->
@@ -128,7 +128,8 @@
   <div class="modal bg-body-secondary p-2 py-md-5" tabindex="-1" id="modalSignin" data-bs-backdrop="static"
     data-bs-keyboard="false">
     <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
+
+      <div class="modal-content border-0 shadow">
 
         <div class="modal-header p-4 pb-4 border-bottom-0">
           <h1 class="fw-bold mb-0 fs-2 ms-2">LOGIN</h1>
