@@ -24,11 +24,11 @@
   <div class="wrapper">
     <!-- Navbar Section -->
     <nav id="topNav" class="navbar bg-body-tertiary border-bottom fixed-top pt-sm-1"
-      style="height:52px; padding:8px 5px;">
-      <div class="container">
-        <a class="navbar-brand fs-2" href="/">Medsy.</a>
+      style="height:52px; padding:9px 0px;">
+      <div class="container p-0">
+        <a class="navbar-brand fs-2 ms-3" href="/">Medsy.</a>
 
-        <button class="navbar-toggler btn-cta px-2" type="button" data-bs-toggle="collapse"
+        <button class="navbar-toggler btn-cta px-2 me-3 focus-ring" type="button" data-bs-toggle="collapse"
           data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false"
           aria-label="Toggle Navigation">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list"
@@ -38,11 +38,11 @@
           </svg>
         </button>
 
-        <div class="collapse navbar-collapse" style="margin: 9px -6px !important;" id="navbarContent">
+        <div class="collapse navbar-collapse" style="margin-top: 9px !important;" id="navbarContent">
           <ul class="navbar-nav pb-3 mt-0">
             <li class="nav-item fs-5 mx-auto mt-3">
-              <a type="button" class="btn nav-link fw-light border border-1 px-4 py-1" data-bs-toggle="modal"
-                data-bs-target="#modalSignin" href="#">Login</a>
+              <a type="button" id="loginBtn" class="btn nav-link fw-light border border-1 px-4 py-1"
+                data-bs-toggle="modal" data-bs-target="#modalSignin" href="#">Login</a>
             </li>
             <!-- <li class="nav-item fs-5"><a class="nav-link js-scroll-trigger" href="/vaccine-alerts.html">Vaccine Alerts</a></li>
               <li class="nav-item fs-5"><a class="nav-link js-scroll-trigger" href="/covid19-news.html">Covid-19 News</a></li> -->
@@ -140,14 +140,15 @@
         <div class="modal-body p-4 pt-0">
           <form class="needs-validation" novalidate>
             <div class="form-floating mb-4">
-              <input type="email" class="form-control mb-2 fs-5 fw-light" id="emailInput" placeholder=" " required>
+              <input type="email" name="emailInput" class="form-control mb-2 fs-5 fw-light" id="emailInput"
+                placeholder=" " required>
               <label for="emailInput" class="form-label fw-light">Email address</label>
               <!-- <div class="valid-feedback"> Looks good!</div> -->
               <div class="invalid-feedback">Please provide a valid Email.</div>
             </div>
             <div class="form-floating mb-4">
-              <input type="password" class="form-control mb-2 fs-5 fw-light" id="passwordInput" placeholder=" "
-                required>
+              <input type="password" name="passwordInput" class="form-control mb-2 fs-5 fw-light" id="passwordInput"
+                placeholder=" " required>
               <label for="passwordInput" class="form-label fw-light">Password</label>
               <!-- <div class="valid-feedback"> Looks good!</div> -->
               <div class="invalid-feedback">Password can't be Empty.</div>
@@ -177,7 +178,7 @@
     integrity="sha512-E8QSvWZ0eCLGk4km3hxSsNmGWbLtSCSUcewDQPQWZF6pEU8GlT8a5fF32wOl1i8ftdMhssTrF/OhyGWwonTcXA=="
     crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
 
-  <!-- <script type="module" defer>
+  <!-- <script type="module">
     import { Octokit } from "https://cdn.skypack.dev/octokit";
   </script> -->
 

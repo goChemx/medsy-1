@@ -1,28 +1,48 @@
+// localStorage.setItem("cred", "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");
+// localStorage.removeItem("cred");
+
 const loggedIn = localStorage.getItem("cred") ? true : false;
 
 import { Octokit } from "https://cdn.skypack.dev/octokit";
 let octokit;
 
+// octokit = new Octokit({ auth: "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" });
+// const { data: { login } } = await octokit.rest.users.getAuthenticated();
+// console.log(login);
 
-const login = async (pass) => {
+const userLogin = async (pass) => {
   const cipher = "U2FsdGVkX1/dZREdMDBplf+iAT4QaPaiPnT7nwKNMMxUB0LsFqiYtNMQTh+k+08EEAFZFHtT9QlFBND7dTsV5Q==";
   const cred = CryptoJS.AES.decrypt(cipher, pass).toString(CryptoJS.enc.Utf8);
+  // localStorage.setItem("cred", cred);
+  // window.location.reload();
   octokit = new Octokit({ auth: cred });
   const { data: { login } } = await octokit.rest.users.getAuthenticated();
   if (login == "amitexm") {
-    localStorage.setItem("cred", "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");
-    // window.location.reload();
+    localStorage.setItem("cred", cred);
+    window.location.reload();
   } else {
     localStorage.removeItem("cred");
   }
 };
 
-// login("janaushadhimrj");
+// const userLogout = () => {
+//   localStorage.removeItem("cred");
+//   window.location.reload();
+// };
+
+
+// pass => janaushadhimrj;
 
 console.log(localStorage.getItem('cred'));
 
 
 if (loggedIn) {
+
+  const loginBtn = document.getElementById("loginBtn");
+  loginBtn.innerHTML = "Logout";
+
+  // loginBtn.addEventListener('click', userLogout());
+
   const bottomNav = document.getElementById("bottomNav");
   bottomNav.classList.remove("d-none");
   //  AUTO show/hide bottom nav onscroll.
@@ -440,29 +460,32 @@ async function orequest() {
 // orequest();
 
 
-// console.log("hello");
 
 
 (() => {
   'use strict'
 
-
-
-  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  // Fetch the form we want to apply custom Bootstrap validation styles to
   const loginForm = document.querySelector(".needs-validation");
 
-  console.log(loginForm.checkValidity());
-
-
-  // Loop over them and prevent submission
-
   loginForm.addEventListener('submit', (event) => {
-    console.log("hello");
+    loginForm.classList.add('was-validated');
     if (!loginForm.checkValidity()) {
-      event.preventDefault()
-      event.stopPropagation()
+      event.preventDefault();
+      event.stopPropagation();
+    } else {
+      const emailInput = event.target.elements.emailInput.value;
+      const passwordInput = event.target.elements.passwordInput.value;
+
+      userLogin(passwordInput);
     }
 
-    loginForm.classList.add('was-validated')
+
+
+
+    console.log(passwordInput);
+
+
+
   }, false)
-})()
+})();

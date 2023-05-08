@@ -1,11 +1,15 @@
+:root {
+  --bs-primary: #6d48e5;
+}
+
+
+
+
 /*@media only screen and (min-width: 768px) {
   .navbar-nav {
     background: transparent;
   }
 }*/
-body {
-  /*background: #f6f6fd;*/
-}
 
 .navbar {
   padding-top: 15px;
