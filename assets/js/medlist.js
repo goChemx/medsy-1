@@ -6,9 +6,9 @@ const loggedIn = localStorage.getItem("cred") ? true : false;
 import { Octokit } from "https://cdn.skypack.dev/octokit";
 let octokit;
 
-// octokit = new Octokit({ auth: "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" });
-// const { data: { login } } = await octokit.rest.users.getAuthenticated();
-// console.log(login);
+octokit = new Octokit({ auth: "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" });
+const { data: { login } } = await octokit.rest.users.getAuthenticated();
+console.log(login);
 
 const userLogin = async (pass) => {
   const cipher = "U2FsdGVkX1/dZREdMDBplf+iAT4QaPaiPnT7nwKNMMxUB0LsFqiYtNMQTh+k+08EEAFZFHtT9QlFBND7dTsV5Q==";
@@ -25,23 +25,24 @@ const userLogin = async (pass) => {
   }
 };
 
-// const userLogout = () => {
-//   localStorage.removeItem("cred");
-//   window.location.reload();
-// };
-
 
 // pass => janaushadhimrj;
 
 console.log(localStorage.getItem('cred'));
 
+const loginBtn = document.getElementById("loginBtn");
 
 if (loggedIn) {
 
-  const loginBtn = document.getElementById("loginBtn");
   loginBtn.innerHTML = "Logout";
-
-  // loginBtn.addEventListener('click', userLogout());
+  loginBtn.addEventListener("click", () => {
+    loaderBody.style.display = "block";
+    setTimeout(() => {
+      loaderBody.style.display = "none";
+      localStorage.removeItem("cred");
+      window.location.reload();
+    }, 500);
+  });
 
   const bottomNav = document.getElementById("bottomNav");
   bottomNav.classList.remove("d-none");
@@ -65,9 +66,9 @@ const medlistList = document.getElementById("medlistList");
 const medlistSearchBox = document.getElementById("medlistSearchBox");
 const medlistSearchBoxClear = document.getElementById("medlistSearchBoxClear");
 
-const loader =
-  '<img class="mx-auto mt-5" style="width:200px; height:200px;" src="assets/images/loader.gif"></img>';
-window.onload = medlistList.innerHTML = loader;
+// const loader =
+//   '<img class="mx-auto mt-5" style="width:200px; height:200px;" src="assets/images/loader.gif"></img>';
+// window.onload = medlistList.innerHTML = loader;
 
 let jsonMeds = [],
   jsonMedsAvl = [];
@@ -233,9 +234,7 @@ fetchData().then((data) => {
  */
 
 const btnUpdationQueue = document.getElementById("btnUpdationQueue");
-const counterBtnUpdationQueue = document.getElementById(
-  "counterBtnUpdationQueue"
-);
+const counterBtnUpdationQueue = document.getElementById("counterBtnUpdationQueue");
 
 const btnUpdate = document.getElementById("btnUpdate");
 const counterBtnUpdate = document.getElementById("counterBtnUpdate");
@@ -382,37 +381,6 @@ medlistSearchBoxClear.addEventListener("click", () => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 async function orequest() {
   const {
     data: { login },
@@ -461,31 +429,40 @@ async function orequest() {
 
 
 
+//----------- Login Form
 
-(() => {
-  'use strict'
+if (!loggedIn) {
 
   // Fetch the form we want to apply custom Bootstrap validation styles to
   const loginForm = document.querySelector(".needs-validation");
-
   loginForm.addEventListener('submit', (event) => {
     loginForm.classList.add('was-validated');
     if (!loginForm.checkValidity()) {
       event.preventDefault();
       event.stopPropagation();
     } else {
-      const emailInput = event.target.elements.emailInput.value;
+      // const emailInput = event.target.elements.emailInput.value;
       const passwordInput = event.target.elements.passwordInput.value;
-
       userLogin(passwordInput);
     }
+  });
+
+  const modalLogin = document.getElementById('modalLogin');
+  modalLogin.addEventListener('hidden.bs.modal', () => {
+    loginForm.classList.remove("was-validated");
+    loginForm.reset();
+  });
+
+  const loaderBody = document.getElementById('loaderBody');
+  loginBtn.addEventListener("click", () => {
+    let loginModal = new bootstrap.Modal('#modalLogin', {});
+    loaderBody.style.display = "block";
+    setTimeout(() => {
+      loaderBody.style.display = "none";
+      loginModal.show();
+    }, 500);
 
 
+  });
 
-
-    console.log(passwordInput);
-
-
-
-  }, false)
-})();
+}

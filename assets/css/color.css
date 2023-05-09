@@ -160,6 +160,7 @@ a.text-primary:focus {
 /*------------------------------------
 - COLOR success
 ------------------------------------*/
+/*
 .alert-success {
   color: #0d3f2a;
   background-color: #a8ebce;
@@ -315,3 +316,4 @@ a.text-success:hover,
 a.text-success:focus {
   color: #1a7a51 !important;
 }
+*/

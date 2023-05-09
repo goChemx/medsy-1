@@ -17,6 +17,7 @@
   <!-- <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700" rel="stylesheet"> -->
 
   <link rel="stylesheet" href="/assets/css/style.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="assets/css/color.css" type="text/css" media="all" />
   <link rel="stylesheet" href="assets/css/custom.css" type="text/css" media="all" />
 </head>
 
@@ -41,8 +42,8 @@
         <div class="collapse navbar-collapse" style="margin-top: 9px !important;" id="navbarContent">
           <ul class="navbar-nav pb-3 mt-0">
             <li class="nav-item fs-5 mx-auto mt-3">
-              <a type="button" id="loginBtn" class="btn nav-link fw-light border border-1 px-4 py-1"
-                data-bs-toggle="modal" data-bs-target="#modalSignin" href="#">Login</a>
+              <a type="button" id="loginBtn" class="btn nav-link fw-light border border-1 px-4 py-1 rounded-1"
+                href="#">Login</a>
             </li>
             <!-- <li class="nav-item fs-5"><a class="nav-link js-scroll-trigger" href="/vaccine-alerts.html">Vaccine Alerts</a></li>
               <li class="nav-item fs-5"><a class="nav-link js-scroll-trigger" href="/covid19-news.html">Covid-19 News</a></li> -->
@@ -73,7 +74,10 @@
           </svg>
         </div>
 
-        <div id="medlistList" class="list-group list-group-flush d-grid gap-2 lh-base pt-5"></div>
+        <div id="medlistList" class="list-group list-group-flush d-grid gap-2 lh-base pt-5">
+          <img id="loaderMeds" class="mx-auto mt-5" style="width:200px; height:200px;"
+            src="assets/images/loader.gif"></img>
+        </div>
       </div>
     </div>
     <!-- Main End -->
@@ -85,7 +89,7 @@
         &darr;
       </button>
 
-      <button id="btnUpdationQueue" type="button" class="btn btn-primary px-3" data-bs-toggle="modal"
+      <button id="btnUpdationQueue" type="button" class="btn btn-primary px-3 rounded-1" data-bs-toggle="modal"
         data-bs-target="#dialogUpdationQueue">
         Update Queue
         <span id="counterBtnUpdationQueue" class="badge bg-light text-secondary"></span>
@@ -102,12 +106,12 @@
   <div class="modal fade" id="dialogUpdationQueue" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="dialogUpdationQueueLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-      <div class="modal-content h-100">
+      <div class="modal-content h-100 rounded-1">
         <div class="modal-header">
           <div class="col-1"></div>
-          <h5 class="modal-title col-10 text-center" id="staticBackdropLabel">
+          <h4 class="modal-title col-10 text-center text-primary fs-5 fw-light" id="staticBackdropLabel">
             Update Queue
-          </h5>
+          </h4>
           <button type="button" class="btn-close col-1" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -115,7 +119,7 @@
         </div>
         <div class="modal-footer justify-content-around">
           <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
-          <button id="btnUpdate" type="button" class="btn btn-primary px-3">
+          <button id="btnUpdate" type="button" class="btn btn-primary px-3 rounded-1">
             Update
             <span id="counterBtnUpdate" class="badge bg-light text-secondary"></span>
           </button>
@@ -126,11 +130,11 @@
 
   <!-- Login Modal -->
 
-  <div class="modal bg-body-secondary p-2 py-md-5" tabindex="-1" id="modalSignin" data-bs-backdrop="static"
+  <div class="modal bg-body-secondary p-2 py-md-5" tabindex="-1" id="modalLogin" data-bs-backdrop="static"
     data-bs-keyboard="false">
     <div class="modal-dialog modal-dialog-centered">
 
-      <div class="modal-content border-0 shadow">
+      <div class="modal-content border-0 shadow rounded-1">
 
         <div class="modal-header p-4 pb-4 border-bottom-0">
           <h1 class="fw-light mb-0 fs-1 ms-2">Login</h1>
@@ -140,33 +144,35 @@
         <div class="modal-body p-4 pt-0">
           <form class="needs-validation" novalidate>
             <div class="form-floating mb-4">
-              <input type="email" name="emailInput" class="form-control mb-2 fs-5 fw-light" id="emailInput"
+              <input type="email" name="emailInput" class="form-control mb-2 fs-5 fw-light rounded-1" id="emailInput"
                 placeholder=" " required>
-              <label for="emailInput" class="form-label fw-light">Email address</label>
+              <label for="emailInput" class="form-label fw-light text-primary">Email address</label>
               <!-- <div class="valid-feedback"> Looks good!</div> -->
               <div class="invalid-feedback">Please provide a valid Email.</div>
             </div>
             <div class="form-floating mb-4">
-              <input type="password" name="passwordInput" class="form-control mb-2 fs-5 fw-light" id="passwordInput"
-                placeholder=" " required>
-              <label for="passwordInput" class="form-label fw-light">Password</label>
+              <input type="password" name="passwordInput" class="form-control mb-2 fs-5 fw-light rounded-1"
+                id="passwordInput" placeholder=" " required>
+              <label for="passwordInput" class="form-label fw-light text-primary">Password</label>
               <!-- <div class="valid-feedback"> Looks good!</div> -->
               <div class="invalid-feedback">Password can't be Empty.</div>
             </div>
             <div class="form-check mb-4 ms-1">
-              <input class="form-check-input" type="checkbox" value="" id="rememberMeCheck" checked>
-              <label class="form-check-label fw-light" for="rememberMeCheck">
+              <input class="form-check-input bg-primary" type="checkbox" value="" id="rememberMeCheck" checked>
+              <label class="form-check-label fw-light text-primary" for="rememberMeCheck">
                 Remember Me
               </label>
             </div>
-            <button class="w-100 mb-2 btn btn-lg btn-outline-primary" type="submit">Sign In</button>
+            <button class="w-100 mb-2 btn btn-lg btn-primary rounded-1" type="submit">Sign In</button>
           </form>
         </div>
       </div>
     </div>
   </div>
 
-
+  <img id="loaderBody" class="position-fixed top-50 start-50 translate-middle"
+    style="display:none; width:200px; height:200px;" src="assets/images/loader.gif"></img>
+  <style></style>
 
 
   <!-- JavaScript code files-->
