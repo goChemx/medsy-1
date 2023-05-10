@@ -105,26 +105,28 @@
   <!-- Wrapper End -->
 
   <!-- Modal - Updation Queue Dialog, Toggled by Update Queue Button(btnUpdationQueue)-->
-  <div class="modal fade" id="dialogUpdationQueue" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="dialogUpdationQueueLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+  <div class="modal fade bg-body" id="dialogUpdationQueue" data-bs-backdrop="static" data-bs-keyboard="false"
+    tabindex="-1" aria-labelledby="dialogUpdationQueueLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-fullscreen-sm-down">
       <div class="modal-content h-100 rounded-1">
         <div class="modal-header">
           <div class="col-1"></div>
-          <h4 class="modal-title col-10 text-center text-primary fs-5 fw-light" id="staticBackdropLabel">
+          <h4 class="modal-title col-10 text-center text-primary h4" id="staticBackdropLabel">
             Update Queue
           </h4>
-          <button type="button" class="btn-close col-1" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="btn-close p-3 me-1" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <div id="medlistUpdateQueueDialog" class="list-group list-group-flush d-grid gap-2 lh-base"></div>
         </div>
-        <div class="modal-footer justify-content-around">
+        <div class="modal-footer justify-content-evenly">
           <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
           <button id="btnUpdate" type="button" class="btn btn-primary px-3 rounded-1">
             Update
             <span id="counterBtnUpdate" class="badge bg-light text-secondary"></span>
           </button>
+          <button type="button" class="btn btn-secondary rounded-1" data-bs-dismiss="modal"
+            aria-label="Close">Close</button>
         </div>
       </div>
     </div>
