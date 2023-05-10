@@ -37,7 +37,9 @@ li.nav-item a#loginBtn:active {
   box-shadow: none;
 }
 
-
+input#medlistSearchBox::placeholder {
+  color: lightslategray;
+}
 
 
 
