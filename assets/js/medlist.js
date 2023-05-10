@@ -6,9 +6,9 @@ const loggedIn = localStorage.getItem("cred") ? true : false;
 import { Octokit } from "https://cdn.skypack.dev/octokit";
 let octokit;
 
-octokit = new Octokit({ auth: "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" });
-const { data: { login } } = await octokit.rest.users.getAuthenticated();
-console.log(login);
+// octokit = new Octokit({ auth: "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" });
+// const { data: { login } } = await octokit.rest.users.getAuthenticated();
+// console.log(login);
 
 const userLogin = async (pass) => {
   const cipher = "U2FsdGVkX1/dZREdMDBplf+iAT4QaPaiPnT7nwKNMMxUB0LsFqiYtNMQTh+k+08EEAFZFHtT9QlFBND7dTsV5Q==";
