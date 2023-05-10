@@ -1,3 +1,13 @@
+.btn {
+  --bs-btn-font-weight: 600;
+}
+
+
+
+
+
+
+
 /*bootstrap customizations*/
 
 .btn {
@@ -12,8 +22,9 @@
 .btn-primary {
   background: #5757E7;
 }
-.btn-primary:focus {
+.btn:focus {
   outline: 0;
+  box-shadow: var(--bs-btn-focus-box-shadow);
 }
 
 /*----------------*/
