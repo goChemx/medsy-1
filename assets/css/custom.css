@@ -7,6 +7,10 @@
   box-shadow: 0px 4px 10px 0px rgba(50,50,93,.226), 0px 1px 3px 0px rgba(0,0,0,.08);
 }
 
+.btn-primary {
+  background: #5757E7;
+}
+
 /*----------------*/
 
 li.nav-item a#loginBtn:hover {
