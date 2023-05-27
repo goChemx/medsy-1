@@ -89,13 +89,14 @@
           </svg>
           <input id="medlistSearchBox" class="form-control fs-5 fw-light border-2 border-primary rounded-1"
             style="padding: 5px 40px" type="text" placeholder="Search meds" aria-label="Search Medicines" />
-          <svg id="medlistSearchBoxClear" type="button"
-            style="position: absolute;margin: 10px;right:0; display:none; z-index:6;" width="24" height="24"
-            viewBox="0 0 20 20">
-            <path d="M10 10l5.09-5.09L10 10l5.09 5.09L10 10zm0 0L4.91 4.91 10 10l-5.09 5.09L10 10z"
-              stroke="currentColor" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
-            </path>
-          </svg>
+          <span id="medlistSearchBoxClear" type="button" class="text-primary"
+            style="position: absolute; padding: 8px; right:0; display:none; z-index:6;">
+            <svg width="24" height="24" viewBox="0 0 20 20">
+              <path d="M10 10l5.09-5.09L10 10l5.09 5.09L10 10zm0 0L4.91 4.91 10 10l-5.09 5.09L10 10z"
+                stroke="currentColor" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+              </path>
+            </svg>
+          </span>
         </div>
 
         <div id="medlistList" class="list-group list-group-flush d-grid gap-2 lh-base pt-5 mt-2">
@@ -218,8 +219,6 @@
     crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
 
   <script src="assets/js/medlist.js" type="module" defer></script>
-
-  <script src="assets/js/test.js" type="module" defer></script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" defer></script>
 
