@@ -131,6 +131,8 @@ fetchData().then((data) => {
       filterMeds(value);
     }, 300);
 
+    document.documentElement.scrollTop = 0;
+
   });
 
   // medlist search box clear button
@@ -163,11 +165,6 @@ fetchData().then((data) => {
 
 });
 
-
-
-// octokit = new Octokit({ auth: "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" });
-// const { data: { login } } = await octokit.rest.users.getAuthenticated();
-// console.log(login);
 
 const loginBtn = document.getElementById("loginBtn");
 
