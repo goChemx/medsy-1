@@ -1,77 +1,18 @@
-localStorage.setItem("cred", "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");
-// localStorage.removeItem("cred");
-
-const loggedIn = localStorage.getItem("cred") ? true : false;
-
-import { Octokit } from "https://cdn.skypack.dev/octokit";
-let octokit;
-
-// octokit = new Octokit({ auth: "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" });
-// const { data: { login } } = await octokit.rest.users.getAuthenticated();
-// console.log(login);
-
-const userLogin = async (pass) => {
-  const cipher = "U2FsdGVkX1/dZREdMDBplf+iAT4QaPaiPnT7nwKNMMxUB0LsFqiYtNMQTh+k+08EEAFZFHtT9QlFBND7dTsV5Q==";
-  const cred = CryptoJS.AES.decrypt(cipher, pass).toString(CryptoJS.enc.Utf8);
-  // localStorage.setItem("cred", cred);
-  // window.location.reload();
-  octokit = new Octokit({ auth: cred });
-  const { data: { login } } = await octokit.rest.users.getAuthenticated();
-  if (login == "amitexm") {
-    localStorage.setItem("cred", cred);
-    window.location.reload();
-  } else {
-    localStorage.removeItem("cred");
-  }
-};
-
-
+// localStorage.setItem("gt", "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");
+// localStorage.removeItem("gt");
 // pass => janaushadhimrj;
 
-console.log(localStorage.getItem('cred'));
+// console.log(localStorage.getItem("gt"));
 
-const loginBtn = document.getElementById("loginBtn");
+const loggedIn = localStorage.getItem("gt") ? true : false;
 
-if (loggedIn) {
+console.log("loggedIn => " + loggedIn);
 
-  loginBtn.innerHTML = "Logout";
-  loginBtn.addEventListener("click", () => {
-    loaderBody.style.display = "block";
-    setTimeout(() => {
-      loaderBody.style.display = "none";
-      localStorage.removeItem("cred");
-      window.location.reload();
-    }, 500);
-  });
-
-  const bottomNav = document.getElementById("bottomNav");
-  bottomNav.classList.remove("d-none");
-  //  AUTO show/hide bottom nav onscroll.
-  bottomNav.style.transition = "all 0.3s ease-in-out";
-  let prevScrollpos = window.pageYOffset;
-  window.onscroll = function () {
-    let currentScrollPos = window.pageYOffset;
-    if (prevScrollpos > currentScrollPos) {
-      bottomNav.style.transform = "translateY(100%)";
-    } else {
-      bottomNav.style.transform = "translateY(0)";
-    }
-    prevScrollpos = currentScrollPos;
-  };
-}
-
-
-// const medlistBody = document.getElementById('medlistBody');
 const medlistList = document.getElementById("medlistList");
 const medlistSearchBox = document.getElementById("medlistSearchBox");
 const medlistSearchBoxClear = document.getElementById("medlistSearchBoxClear");
 
-// const loader =
-//   '<img class="mx-auto mt-5" style="width:200px; height:200px;" src="assets/images/loader.gif"></img>';
-// window.onload = medlistList.innerHTML = loader;
-
-let jsonMeds = [],
-  jsonMedsAvl = [];
+let jsonMeds = [], jsonMedsAvl = [];
 
 async function fetchData() {
   let jsonMedsData = [];
@@ -105,7 +46,7 @@ function listMeds(data, toAppend) {
 
   const iterations = rem ? divideInto : divideInto + 1;
 
-  medlistList.innerHTML = "";
+  toAppend.innerHTML = "";
 
   setTimeout(function generateRows() {
     const base = chunkSize * iteration;
@@ -113,24 +54,18 @@ function listMeds(data, toAppend) {
     let text = "";
 
     for (let i = base; i < loopSize; i++) {
-      text =
-        text +
-        `<li class="list-group-item d-flex pb-3 ps-2 ${data[i].avl ? "list-group-item-success" : "list-group-item-danger"
-        }">
-                      <div class="ms-2 w-100">
-                        <div>${data[i].gn}</div>
-                        <div class="d-flex justify-content-between text-muted pe-2">
-                          <small>(${data[i].dc})</small>
-                          <small>${data[i].us}</small>
-                          <small>${data[i].mrp
-          ? "Rs. " + data[i].mrp
-          : "Under Processing"
-        }</small>
-                          <input id="mcb" type="checkbox" data-dc="${data[i].dc
-        }" ${data[i].avl ? "checked" : ""}>
-                        </div>
-                      </div>
-                    </li>`;
+      text = text +
+        `<li class="list-group-item d-flex ps-2 pb-3 ${data[i].avl ? "list-group-item-success" : "list-group-item-danger"}">
+          <div class="ms-2 w-100">
+          <div>${data[i].gn}</div>
+            <div class="d-flex justify-content-between text-muted pe-2">
+              <small>(${data[i].dc})</small>
+              <small>${data[i].us}</small>
+              <small>${data[i].mrp ? "Rs. " + data[i].mrp : "Under Processing"}</small>
+              ${loggedIn ? `<input type="checkbox" data-dc="${data[i].dc}" ${data[i].avl ? "checked" : ""}>` : ""}
+            </div>
+          </div>
+        </li>`;
     }
 
     toAppend.insertAdjacentHTML("beforeend", text);
@@ -138,6 +73,7 @@ function listMeds(data, toAppend) {
     iteration++;
 
     if (iteration < iterations) setTimeout(generateRows, 0);
+
   }, 0);
 }
 
@@ -177,22 +113,14 @@ function filterMeds(value) {
   }, 0);
 }
 
-// function debounce(func, timeout = 300) {
-//   let timer;
-//   return () => {
-//     clearTimeout(timer);
-//     timer = setTimeout(() => {
-//       func.apply();
-//     }, timeout);
-//   };
-// }
-
 fetchData().then((data) => {
+
   listMeds(data, medlistList);
 
   let timer;
 
   medlistSearchBox.addEventListener("input", (input) => {
+
     let value = input.target.value;
 
     medlistSearchBoxClear.style.display = value.length != 0 ? "block" : "none";
@@ -203,10 +131,15 @@ fetchData().then((data) => {
       filterMeds(value);
     }, 300);
 
-    // debounce(() => {
-    //   filterMeds(value);
-    // });
   });
+
+  // medlist search box clear button
+
+  medlistSearchBoxClear.addEventListener("click", () => {
+    medlistSearchBox.value = "";
+    medlistSearchBox.dispatchEvent(new Event("input", { bubbles: true }));
+  });
+
 
   // jsonMedsData = jsonMeds.map(item => {
   //   return {
@@ -227,166 +160,372 @@ fetchData().then((data) => {
   //   });
   // console.log(JSON.stringify(jsonMedsAvl));
   // console.log(JSON.stringify(jsonMedsAvl.sort((a, b) => a.dc - b.dc)));
+
 });
 
-/**
- * Logged In
- */
 
-const btnUpdationQueue = document.getElementById("btnUpdationQueue");
-const counterBtnUpdationQueue = document.getElementById("counterBtnUpdationQueue");
 
-const btnUpdate = document.getElementById("btnUpdate");
-const counterBtnUpdate = document.getElementById("counterBtnUpdate");
+// octokit = new Octokit({ auth: "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" });
+// const { data: { login } } = await octokit.rest.users.getAuthenticated();
+// console.log(login);
 
-const medlistUpdateQueueDialog = document.getElementById(
-  "medlistUpdateQueueDialog"
-);
+const loginBtn = document.getElementById("loginBtn");
 
-var updationQueue = [];
+if (!loggedIn) {
 
-medlistList.addEventListener("click", editUpdationQueue);
+  const userLogin = async (event) => {
 
-function editUpdationQueue(e) {
-  if ("mcb" === e.target.id) {
-    let dc = parseInt(
-      e.target.parentElement.children[0].innerHTML.match(/\d+/)
-    );
+    event.target.elements.submitBtn.disabled = true;
+    event.target.elements.submitBtn.innerHTML = `<span class="spinner-border spinner-border-sm" style="margin-right:5px; margin-bottom:2px;" role="status"
+    aria-hidden="true"></span>Signing In . .`;
 
-    let dc_jsonMedsIndx = jsonMeds.findIndex((item) => item.dc === dc);
+    const lCreds = {
+      u: "38fa997fe1c80c07e7632fed99f877a7ee9fcf22bf1063ce92ea4d3a0dc59eef5aa8216cc396aa1d2c69a5aedf359c9a06e8b1ec750e335c2eb51aa0b779617a",
+      p: "da9e943ed8a93a8acfd01f76ce793dbe84a281f29f4f2ba2cdffaee9848bde3a6142928e99796bfc35c4d873fab1a83289cf17defaffc66c97405482a34ebf6c"
+    };
 
-    jsonMeds[dc_jsonMedsIndx].avl = Number(e.target.checked);
+    const ue = event.target.elements.ueInput.value;
+    const pass = event.target.elements.passInput.value;
 
-    let dc_updationQueueIndx = updationQueue.findIndex(
-      (item) => item.dc === dc
-    );
+    if (CryptoJS.SHA3(ue).toString() !== lCreds.u || CryptoJS.SHA3(pass).toString() !== lCreds.p) {
+      setTimeout(() => {
+        showAlert('Bad Credentials!', 'danger');
+        event.target.elements.submitBtn.innerHTML = "Sign In";
+        event.target.elements.submitBtn.disabled = false;
+      }, 3000);
+      return;
 
-    if (dc_updationQueueIndx > -1) {
-      updationQueue.splice(dc_updationQueueIndx, 1);
     } else {
-      var updationMed = {
-        dc: dc,
-        gn: jsonMeds[dc_jsonMedsIndx].gn,
-        us: jsonMeds[dc_jsonMedsIndx].us,
-        mrp: jsonMeds[dc_jsonMedsIndx].mrp,
-        avl: jsonMeds[dc_jsonMedsIndx].avl,
-      };
 
-      updationQueue.push(updationMed);
+      const cipher = "U2FsdGVkX19KAVxzKtTDRHF4/f4Zgu2njlgXSgQBpp7/No0XteV5H8OBAHhGZqn85Jc0vF9wamZSzykD6L2tYQ==";
+      const gt = CryptoJS.AES.decrypt(cipher, pass).toString(CryptoJS.enc.Utf8);
+      console.log(gt);
+
+      octokit = new Octokit({ auth: gt });
+      // const { data: { login } } = await octokit.rest.users.getAuthenticated();
+      const { data: { id } } = await octokit.request("/user");
+
+      console.log(id);
+
+      setTimeout(() => {
+
+        if (id == "60008947") {
+
+          localStorage.setItem("gt", gt);
+          event.target.elements.submitBtn.innerHTML = `<span class="spinner-border spinner-border-sm" style="margin-right:5px; margin-bottom:2px;" role="status"
+          aria-hidden="true"></span>Redirecting . .`;
+          setTimeout(() => {
+            window.location.reload();
+          }, 2000);
+
+        } else {
+
+          localStorage.removeItem("gt");
+          setTimeout(() => {
+            showAlert('Bad Credentials!', 'danger');
+            event.target.elements.submitBtn.innerHTML = "Sign In";
+            event.target.elements.submitBtn.disabled = false;
+          }, 4000);
+        }
+      }, 2000);
     }
+  };
 
-    let counterUpdationQueue = updationQueue.length ? updationQueue.length : "";
-    counterBtnUpdationQueue.innerHTML = counterUpdationQueue;
-    counterBtnUpdate.innerHTML = counterUpdationQueue;
+  // Fetch the form we want to apply custom Bootstrap validation styles to
+  const loginForm = document.querySelector(".needs-validation");
+  loginForm.addEventListener('submit', (event) => {
+    event.preventDefault(); event.stopPropagation();
+
+    alertPlaceholder.innerHTML = "";
+    loginForm.classList.add('was-validated');
+
+    if (!validate(event)) {
+
+      event.target.elements.ueInput.addEventListener('input', () => {
+        validateUE(event);
+      });
+      event.target.elements.passInput.addEventListener('input', () => {
+        validatePass(event);
+      });
+    } else {
+
+      setTimeout(userLogin(event), 2000);
+    }
+  });
+
+
+  const validate = (event) => {
+
+    const isValidUe = validateUE(event);
+
+    const isValidPass = validatePass(event);
+
+    return isValidUe && isValidPass;
   }
 
-  e.stopPropagation(); //warning
+  const ueInvalid = document.querySelector("#ueInput + div.invalid-feedback");
+  const validateUE = (event) => {
+    const ueInput = event.target.elements.ueInput;
+    if (ueInput.value.length == 0) {
+      ueInput.setCustomValidity(' ');
+      ueInvalid.innerHTML = "Login can't be empty.";
+    } else if (ueInput.value.length < 6) {
+      ueInput.setCustomValidity(' ');
+      ueInvalid.innerHTML = "Username too short.";
+    } else if (/\@/.test(ueInput.value)) {
+      if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(ueInput.value)) {
+        ueInput.setCustomValidity("");
+        return true;
+      } else {
+        ueInput.setCustomValidity(' ');
+        ueInvalid.innerHTML = "Invalid Email.";
+      }
+    } else {
+      ueInput.setCustomValidity("");
+      return true;
+    }
+  }
+
+  const passInvalid = document.querySelector("#passInput + div.invalid-feedback");
+  const validatePass = (event) => {
+    const passInput = event.target.elements.passInput;
+    if (passInput.value.length == 0) {
+      passInput.setCustomValidity(' ');
+      passInvalid.innerHTML = "Password can't be empty.";
+    } else if (passInput.value.length < 8) {
+      passInput.setCustomValidity(' ');
+      passInvalid.innerHTML = "Password too small.";
+    } else {
+      passInput.setCustomValidity("");
+      return true;
+    }
+  }
+
+  const modalLogin = document.getElementById('modalLogin');
+  modalLogin.addEventListener('hidden.bs.modal', () => {
+    loginForm.classList.remove("was-validated");
+    loginForm.elements.submitBtn.disabled = false;
+    loginForm.elements.submitBtn.innerHTML = "Sign In";
+    loginForm.reset();
+    alertPlaceholder.innerHTML = "";
+  });
+
+  const loaderBody = document.getElementById('loaderBody');
+  loginBtn.addEventListener("click", () => {
+    let loginModal = new bootstrap.Modal('#modalLogin', {});
+    loaderBody.style.display = "block";
+    setTimeout(() => {
+      loaderBody.style.display = "none";
+      loginModal.show();
+    }, 500);
+  });
+
+  const alertPlaceholder = document.getElementById('liveAlertPlaceholder');
+  const showAlert = (message, type) => {
+    alertPlaceholder.innerHTML = [
+      `<div class="alert alert-${type} alert-dismissible" role="alert" fade show>`,
+      `   <div class="text-center">${message}</div>`,
+      '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+      '</div>'
+    ].join('');
+  }
+
+  const passToggle = document.querySelector('#passToggle');
+  const passInput = document.querySelector('#passInput');
+  passToggle.addEventListener('click', () => {
+    if (passInput.type === "password") {
+      passInput.type = "text";
+      passToggle.innerHTML = `<path d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7.028 7.028 0 0 0-2.79.588l.77.771A5.944 5.944 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.134 13.134 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755-.165.165-.337.328-.517.486l.708.709z"/> <path d="M11.297 9.176a3.5 3.5 0 0 0-4.474-4.474l.823.823a2.5 2.5 0 0 1 2.829 2.829l.822.822zm-2.943 1.299.822.822a3.5 3.5 0 0 1-4.474-4.474l.823.823a2.5 2.5 0 0 0 2.829 2.829z"/> <path d="M3.35 5.47c-.18.16-.353.322-.518.487A13.134 13.134 0 0 0 1.172 8l.195.288c.335.48.83 1.12 1.465 1.755C4.121 11.332 5.881 12.5 8 12.5c.716 0 1.39-.133 2.02-.36l.77.772A7.029 7.029 0 0 1 8 13.5C3 13.5 0 8 0 8s.939-1.721 2.641-3.238l.708.709zm10.296 8.884-12-12 .708-.708 12 12-.708.708z"/>`;
+    } else {
+      passInput.type = "password";
+      passToggle.innerHTML = `<path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" /> <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />`;
+    }
+  });
+
 }
 
-/** Event listener for when first Update button in medlist screen is clicked.
- * It resets the Updation Queue Dialog by setting its innerHTML to black string.
- * Then regenerates the list in Updation Queue Dialog from the updationQueue[] array reusing the listMeds function.
- */
-btnUpdationQueue.addEventListener("click", function () {
-  medlistUpdateQueueDialog.innerHTML = "";
 
-  let text = "";
 
-  for (let i = 0; i < updationQueue.length; i++) {
-    text =
-      text +
-      `<li class="list-group-item d-flex pb-3 ps-2 ${updationQueue[i].avl
-        ? "list-group-item-success"
-        : "list-group-item-danger"
-      }">
-                      <div>${i + 1}. </div>
-                      <div class="ms-2 w-100">
-                      <div class="h6">${updationQueue[i].gn}</div>
-                      <div class="d-flex justify-content-between text-muted pe-2">
-                        <small>(${updationQueue[i].dc})</small>
-                        <small>${updationQueue[i].us}</small>
-                        <small>${updationQueue[i].mrp
-        ? "Rs. " + updationQueue[i].mrp
-        : "Under Processing"
-      }</small>
-                        <input id="mcb" type="checkbox" data-dc="${updationQueue[i].dc
-      }" ${updationQueue[i].avl ? "checked" : ""}>
-                      </div>
-                    </div>
-                  </li>`;
+if (loggedIn) {
+
+  /** Logged UI */
+
+  loginBtn.innerHTML = "Logout";
+  loginBtn.addEventListener("click", () => {
+    loaderBody.style.display = "block";
+    localStorage.removeItem("gt");
+    setTimeout(() => {
+      loaderBody.style.display = "none";
+      window.location.reload();
+    }, 1000);
+  });
+
+  const bottomNav = document.getElementById("bottomNav");
+  bottomNav.classList.remove("d-none");
+  //  AUTO show/hide bottom nav onscroll.
+  bottomNav.style.transition = "all 0.3s ease-in-out";
+  let prevScrollpos = window.pageYOffset;
+  window.onscroll = function () {
+    let currentScrollPos = window.pageYOffset;
+    if (prevScrollpos > currentScrollPos) {
+      bottomNav.style.transform = "translateY(100%)";
+    } else {
+      bottomNav.style.transform = "translateY(0)";
+    }
+    prevScrollpos = currentScrollPos;
+  };
+
+
+
+  /*** Logged In Operations */
+
+  const btnUpdationQueue = document.getElementById("btnUpdationQueue");
+  const counterBtnUpdationQueue = document.getElementById("counterBtnUpdationQueue");
+
+  const btnUpdate = document.getElementById("btnUpdate");
+  const counterBtnUpdate = document.getElementById("counterBtnUpdate");
+
+  const medlistUpdateQueueDialog = document.getElementById("medlistUpdateQueueDialog");
+
+  var updationQueue = [];
+
+  medlistList.addEventListener("click", editUpdationQueue);
+
+  function editUpdationQueue(e) {
+
+    if ("checkbox" === e.target.type) {
+      let dc = parseInt(
+        e.target.parentElement.children[0].innerHTML.match(/\d+/)
+      );
+
+      let dc_jsonMedsIndx = jsonMeds.findIndex((item) => item.dc === dc);
+
+      jsonMeds[dc_jsonMedsIndx].avl = Number(e.target.checked);
+
+      let dc_updationQueueIndx = updationQueue.findIndex(
+        (item) => item.dc === dc
+      );
+
+      if (dc_updationQueueIndx > -1) {
+        updationQueue.splice(dc_updationQueueIndx, 1);
+      } else {
+        var updationMed = {
+          dc: dc,
+          gn: jsonMeds[dc_jsonMedsIndx].gn,
+          us: jsonMeds[dc_jsonMedsIndx].us,
+          mrp: jsonMeds[dc_jsonMedsIndx].mrp,
+          avl: jsonMeds[dc_jsonMedsIndx].avl,
+        };
+
+        updationQueue.push(updationMed);
+      }
+
+      let counterUpdationQueue = updationQueue.length ? updationQueue.length : "";
+      counterBtnUpdationQueue.innerHTML = counterUpdationQueue;
+      counterBtnUpdate.innerHTML = counterUpdationQueue;
+    }
+
+    e.stopPropagation(); //warning
   }
 
-  medlistUpdateQueueDialog.innerHTML = text;
-});
+  /** Event listener for when first Update button in medlist screen is clicked.
+   * It resets the Updation Queue Dialog by setting its innerHTML to empty string.
+   * Then regenerates the list in Updation Queue Dialog from the updationQueue[] array reusing the listMeds function.
+   */
+  btnUpdationQueue.addEventListener("click", function () {
+    medlistUpdateQueueDialog.innerHTML = "";
 
-/** Event Listener for when med checkbox in Update Queue Dialog is clicked upon.
- * It catches the event and does the following operations.
- */
-medlistUpdateQueueDialog.addEventListener("click", function (e) {
-  if ("mcb" === e.target.id) {
-    // reusing the function to remove the clicked meds object from updationQueue[] array.
-    editUpdationQueue(e);
+    let text = "";
 
-    // code to restore the med's previous state (check/unchecked) in medlist when med is removed from UpdateQueue dialog.
-    const medCbxId = `[data-dc="${e.target.dataset.dc}"]`;
-    // Select element inside main list
-    let medlistList_medCbx = medlistList.querySelector(medCbxId);
-    medlistList_medCbx.checked = !medlistList_medCbx.checked;
+    for (let i = 0; i < updationQueue.length; i++) {
+      text = text +
+        `<li class="list-group-item d-flex pb-3 ps-2 ${updationQueue[i].avl ? "list-group-item-success" : "list-group-item-danger"}">
+            <div>${i + 1}. </div>
+            <div class="ms-2 w-100">
+              <div class="h6">${updationQueue[i].gn}</div>
+              <div class="d-flex justify-content-between text-muted pe-2">
+                <small>(${updationQueue[i].dc})</small>
+                <small>${updationQueue[i].us}</small>
+                <small>${updationQueue[i].mrp ? "Rs. " + updationQueue[i].mrp : "Under Processing"}</small>
+                <input type="checkbox" data-dc="${updationQueue[i].dc}" ${updationQueue[i].avl ? "checked" : ""}>
+              </div>
+            </div>
+        </li>`;
+    }
 
-    // Select element inside search list
-    // let searchResults_medCbx = medlistListSearchResults.querySelector(medCbxId);
-    // if(searchResults_medCbx != null) searchResults_medCbx.checked = !searchResults_medCbx.checked; //Discard if not in search result
+    medlistUpdateQueueDialog.innerHTML = text;
+  });
 
-    // finally remove the med's parent container (li) element from updation queue dialog with a fade out effect.
-    e.target.parentElement.parentElement.parentElement.style.transition =
-      "opacity 0.5s ease";
-    e.target.parentElement.parentElement.parentElement.style.opacity = 0;
+  /** Event Listener for when med checkbox in Update Queue Dialog is clicked upon.
+   * It catches the event and does the following operations.
+   */
+  medlistUpdateQueueDialog.addEventListener("click", function (e) {
+    if ("checkbox" === e.target.type) {
+      // reusing the function to remove the clicked meds object from updationQueue[] array.
+      editUpdationQueue(e);
 
-    setTimeout(function () {
-      e.target.parentElement.parentElement.parentElement.remove();
-    });
-  }
+      // code to restore the med's previous state (check/unchecked) in medlist when med is removed from UpdateQueue dialog.
+      const medCbxClickedSelector = `[data-dc="${e.target.dataset.dc}"]`;
+      // Select element inside main list
+      let medlistList_medCbx = medlistList.querySelector(medCbxClickedSelector);
+      medlistList_medCbx.checked = !medlistList_medCbx.checked;
 
-  // stope event propagation going any further then where event listener is added (medlistUpdateQueueDialog).
-  e.stopPropagation(); //warning
-});
+      // Select element inside search list
+      // let searchResults_medCbx = medlistListSearchResults.querySelector(medCbxId);
+      // if(searchResults_medCbx != null) searchResults_medCbx.checked = !searchResults_medCbx.checked; //Discard if not in search result
 
-// // medlist search box clear button
+      // finally remove the med's parent container (li) element from updation queue dialog with a fade out effect.
+      e.target.parentElement.parentElement.parentElement.style.transition =
+        "opacity 0.5s ease";
+      e.target.parentElement.parentElement.parentElement.style.opacity = 0;
 
-medlistSearchBoxClear.addEventListener("click", () => {
-  medlistSearchBox.value = "";
-  medlistSearchBox.dispatchEvent(new Event("input", { bubbles: true }));
-});
+      setTimeout(function () {
+        e.target.parentElement.parentElement.parentElement.remove();
+      });
+    }
 
-// function loadOcto() {
-//   const scriptTag = document.createElement("script");
-//   scriptTag.setAttribute('type', 'module');
-//   const textNode = document.createTextNode("import { Octokit } from 'https://cdn.skypack.dev/octokit';");
-//   scriptTag.appendChild(textNode);
-//   document.body.appendChild(scriptTag);
-//   // scriptTag.remove()
-// }
+    // stope event propagation going any further then where event listener is added (medlistUpdateQueueDialog).
+    e.stopPropagation(); //warning
+  });
+
+}
+
+
+
+// import { Octokit } from "https://cdnjs.cloudflare.com/ajax/libs/rest.js/15.2.4/octokit.min.js";
+import { Octokit } from "https://cdn.skypack.dev/@octokit/core";
+
+let octokit;
+
+
+
 
 
 
 // const enCred = (pass) => {
-//   return CryptoJS.AES.encrypt("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", pass).toString();
+//   console.log(CryptoJS.AES.encrypt("", pass).toString());
 // };
+// enCred = ("");
+
+// const deCred = (pass) => {
+//   console.log(CryptoJS.AES.decrypt("", pass).toString(CryptoJS.enc.Utf8));
+// };
+// deCred("");
+
+// const hash = (message) => {
+//   console.log(CryptoJS.SHA3(message).toString());
+// };
+// hash("janaushadhimrj");
 
 
-// console.log(enCred("janaushadhimrj"));
 
+octokit = new Octokit({ auth: localStorage.getItem("gt") });
+// // const { data: { login } } = await octokit.rest.users.getAuthenticated();
+const { data: { id } } = await octokit.request("/user");
 
-
-
-
+console.log(id);
 
 async function orequest() {
-  const {
-    data: { login },
-  } = await octokit.rest.users.getAuthenticated();
-
-  console.log("Hello, %s", login);
 
   const {
     data: { sha },
@@ -402,7 +541,7 @@ async function orequest() {
 
   console.log(sha);
 
-  const updateReq = await octokit.request(
+  const { status } = await octokit.request(
     "PUT /repos/{owner}/{repo}/contents/{path}",
     {
       owner: "amitexm",
@@ -421,48 +560,8 @@ async function orequest() {
     }
   );
 
-  console.log(updateReq);
+  console.log(status);
 
 }
 
-// orequest();
-
-
-
-//----------- Login Form
-
-if (!loggedIn) {
-
-  // Fetch the form we want to apply custom Bootstrap validation styles to
-  const loginForm = document.querySelector(".needs-validation");
-  loginForm.addEventListener('submit', (event) => {
-    loginForm.classList.add('was-validated');
-    if (!loginForm.checkValidity()) {
-      event.preventDefault();
-      event.stopPropagation();
-    } else {
-      // const emailInput = event.target.elements.emailInput.value;
-      const passwordInput = event.target.elements.passwordInput.value;
-      userLogin(passwordInput);
-    }
-  });
-
-  const modalLogin = document.getElementById('modalLogin');
-  modalLogin.addEventListener('hidden.bs.modal', () => {
-    loginForm.classList.remove("was-validated");
-    loginForm.reset();
-  });
-
-  const loaderBody = document.getElementById('loaderBody');
-  loginBtn.addEventListener("click", () => {
-    let loginModal = new bootstrap.Modal('#modalLogin', {});
-    loaderBody.style.display = "block";
-    setTimeout(() => {
-      loaderBody.style.display = "none";
-      loginModal.show();
-    }, 500);
-
-
-  });
-
-}
+orequest();
