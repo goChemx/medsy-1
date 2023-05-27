@@ -1,39 +1,60 @@
+/*Bootstrap Custom*/
 .btn {
   --bs-btn-font-weight: 600;
-  box-shadow: 0px 1px 2px 0px rgba(0,0,0,.171);
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, .171);
 }
+
 .btn:hover {
-  box-shadow: 0px 4px 10px 0px rgba(50,50,93,.226), 0px 1px 3px 0px rgba(0,0,0,.08);
+  box-shadow: 0px 4px 10px 0px rgba(50, 50, 93, .226), 0px 1px 3px 0px rgba(0, 0, 0, .08);
 }
+
 .btn:focus {
   box-shadow: var(--bs-btn-focus-box-shadow);
 }
+
 .btn:focus-visible {
   box-shadow: var(--bs-btn-focus-box-shadow);
   border-color: var(--bs-btn-hover-border-color);
 }
 
-
 .btn-primary {
-  --bs-btn-bg: #5757E7;;
-  --bs-btn-border-color: #5757E7;;
+  --bs-btn-bg: #5757E7;
+  ;
+  --bs-btn-border-color: #5757E7;
+  ;
 }
-.btn-primary:focus, .btn-primary:focus-visible {
+
+.btn-primary:focus,
+.btn-primary:focus-visible {
   background-color: #5757E7;
   box-shadow: 0 0 0 0.25rem rgba(94, 114, 228, 0.5);
 }
 
+.card,
+.btn,
+.form-control,
+.modal-content {
+  border-radius: var(--bs-border-radius-sm) !important;
+}
+
+.btn-close:active {
+  box-shadow: var(--bs-btn-close-focus-shadow);
+  opacity: var(--bs-btn-close-focus-opacity);
+}
+
+#btnClose:active {
+  box-shadow: var(--bs-btn-focus-box-shadow);
+}
 
 
 /*----------------*/
-
-li.nav-item a#loginBtn:hover {
+.c-btn:hover {
   background-color: #5757e70d;
-  box-shadow: 0px 1px 2px 0px rgba(0,0,0,.171);
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, .171);
 }
 
-li.nav-item a#loginBtn:active {
-  background-color: #5757e70d;
+.c-btn:active {
+  background-color: #5757e70d !important;
   box-shadow: none;
 }
 
