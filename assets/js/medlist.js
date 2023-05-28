@@ -412,9 +412,7 @@ if (loggedIn) {
         alert("Discrepancy. Found other way around. Try sorting again.");
       }
 
-      let dc_updationQueueIndx = updationQueue.findIndex(
-        (item) => item.dc === dc
-      );
+      let dc_updationQueueIndx = updationQueue.findIndex((item) => item.dc === dc);
 
       if (dc_updationQueueIndx > -1) {
         updationQueue.splice(dc_updationQueueIndx, 1);
