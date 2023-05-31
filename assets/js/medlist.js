@@ -13,7 +13,7 @@ let jsonMeds = [], jsonMedsAvl = [];
 
 async function fetchData() {
 
-  const medsDataResponse = await fetch("/assets/json/meds-test.json");
+  const medsDataResponse = await fetch("/assets/json/meds-data-min.json");
   const jsonMedsData = await medsDataResponse.json();
 
   const medsAvlResponse = await fetch("/assets/json/meds-avl-min.json");
@@ -487,14 +487,75 @@ if (loggedIn) {
         "opacity 0.5s ease";
       e.target.parentElement.parentElement.parentElement.style.opacity = 0;
 
-      setTimeout(function () {
-        e.target.parentElement.parentElement.parentElement.remove();
-      });
+      setTimeout(() => { e.target.parentElement.parentElement.parentElement.remove() }, 500);
     }
 
     // stope event propagation going any further then where event listener is added (medlistUpdateQueueDialog).
     e.stopPropagation(); //warning
   });
+
+
+  btnUpdate.addEventListener('click', async (e) => {
+    if (updationQueue.length === 0) {
+      e.stopPropagation();
+
+    } else {
+
+      const path = "assets/json/meds-avl-min.json";
+
+      const sha = await getSHA(path);
+      console.log(sha);
+
+      const base64 = CryptoJS.enc.Utf8.parse(JSON.stringify(jsonMedsAvl)).toString(CryptoJS.enc.Base64);
+
+      const updateStatus = await updateFile(sha, path, base64);
+      console.log(updateStatus);
+
+    }
+  });
+
+
+  const getSHA = async (path) => {
+    const { data: { sha } } = await octokit.request("GET /repos/{owner}/{repo}/contents/{path}", {
+      owner: "amitexm",
+      repo: "medsy",
+      path: path,
+      headers: {
+        Accept: "application/vnd.github+json",
+        "X-GitHub-Api-Version": "2022-11-28",
+      }
+    });
+    return sha;
+  };
+
+
+  const updateFile = async (sha, path, base64) => {
+    const { status } = await octokit.request(
+      "PUT /repos/{owner}/{repo}/contents/{path}",
+      {
+        owner: "amitexm",
+        repo: "medsy",
+        path: path,
+        message: "change avl",
+        committer: {
+          name: "amitexm",
+          email: "amitexm@github.com",
+        },
+        content: base64,
+        sha: sha,
+        headers: {
+          Accept: "application/vnd.github+json",
+          "X-GitHub-Api-Version": "2022-11-28",
+        },
+      }
+    );
+    return status;
+  }
+
+
+
+
+
 
 
 
@@ -539,7 +600,7 @@ if (loggedIn) {
 
   }
 
-  orequest();
+  // orequest();
 
 
 
