@@ -16,8 +16,14 @@ async function fetchData() {
   const medsDataResponse = await fetch("/assets/json/meds-data-min.json");
   const jsonMedsData = await medsDataResponse.json();
 
-  const medsAvlResponse = await fetch("/assets/json/meds-avl-min.json");
-  jsonMedsAvl = await medsAvlResponse.json();
+  if (loggedIn) {
+    const medsAvlResponse = await fetch("https://api.github.com/repos/amitexm/medsy/contents/assets/json/meds-avl-min.json?qs=" + Date.now());
+    const { content } = await medsAvlResponse.json();
+    jsonMedsAvl = JSON.parse(CryptoJS.enc.Base64.parse(content.replace(/\n/g, "")).toString(CryptoJS.enc.Utf8));
+  } else {
+    const medsAvlResponse = await fetch("/assets/json/meds-avl-min.json?qs=" + Date.now());
+    jsonMedsAvl = await medsAvlResponse.json();
+  }
 
   for (let i = 0; i < jsonMedsData.length; i++) {
     jsonMeds.push({
