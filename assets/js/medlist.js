@@ -145,6 +145,7 @@ fetchData().then((data) => {
   });
 
 
+
   // jsonMedsData = jsonMeds.map(item => {
   //   return {
   //           "dc": parseInt(item.dc),
@@ -165,7 +166,22 @@ fetchData().then((data) => {
   // console.log(JSON.stringify(jsonMedsAvl));
   // console.log(JSON.stringify(jsonMedsAvl.sort((a, b) => a.dc - b.dc)));
 
+}).then(() => {
+
+  let scrollPos = sessionStorage.getItem("scrollPos");
+  if (scrollPos !== null) {
+    document.documentElement.scrollTop = parseInt(scrollPos, 10);
+    console.log(scrollPos);
+  }
+
+  // document.onload = function () {
+  //   document.documentElement.scrollTop = 10000;
+  // }
+
+
 });
+
+
 
 
 const loginBtn = document.getElementById("loginBtn");
@@ -346,6 +362,12 @@ if (!loggedIn) {
 
 
 if (loggedIn) {
+
+  window.addEventListener('beforeunload', () => {
+    sessionStorage.setItem("scrollPos", document.documentElement.scrollTop);
+    console.log(sessionStorage.getItem('scrollPos'));
+  });
+
 
 
   const octokit = new Octokit({ auth: localStorage.getItem("gt") });
@@ -564,9 +586,6 @@ if (loggedIn) {
 
 
 
-
-
-
   async function orequest() {
 
     const {
@@ -609,15 +628,6 @@ if (loggedIn) {
   // orequest();
 
 
-
-
-
-
-
-
-
-
-
 }
 
 
@@ -638,6 +648,3 @@ if (loggedIn) {
 //   console.log(CryptoJS.SHA3(message).toString());
 // };
 // hash("janaushadhimrj");
-
-
-
