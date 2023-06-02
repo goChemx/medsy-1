@@ -369,7 +369,6 @@ if (loggedIn) {
   });
 
 
-
   const octokit = new Octokit({ auth: localStorage.getItem("gt") });
   const { data: { id } } = await octokit.request("/user");
 
