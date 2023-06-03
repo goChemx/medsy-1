@@ -68,7 +68,28 @@ input#passInput:invalid {
 }
 
 
+span#medlistSearchBoxClear:active {
+    background-color: lavender;
+    border-radius: 2px;
+}
 
+
+input[type="checkbox"] {
+    cursor: pointer;
+}
+
+input[type="checkbox"]:active::after {
+    content: "";
+    display: block;
+    width: 15px;
+    height: 16px;
+    border-radius: 3px;
+    translate: -2px 2px;
+    outline: solid 10px;
+    outline-color: #98c1d9;
+    outline-offset: -2px;
+    opacity: 50%;
+}
 
 
 

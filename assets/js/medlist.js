@@ -16,7 +16,7 @@ async function fetchData() {
   const medsDataResponse = await fetch("/assets/json/meds-data-min.json");
   const jsonMedsData = await medsDataResponse.json();
 
-  if (loggedIn) {
+  if (!loggedIn) {
     const medsAvlResponse = await fetch("https://api.github.com/repos/amitexm/medsy/contents/assets/json/meds-avl-min.json?qs=" + Date.now());
     const { content } = await medsAvlResponse.json();
     jsonMedsAvl = JSON.parse(CryptoJS.enc.Base64.parse(content.replace(/\n/g, "")).toString(CryptoJS.enc.Utf8));
@@ -74,8 +74,14 @@ function listMeds(data, toAppend) {
 
     iteration++;
 
-    if (iteration < iterations) setTimeout(generateRows, 0);
+    if (iteration < iterations) { setTimeout(generateRows, 0); }
 
+    else {
+      const scrollPos = sessionStorage.getItem("scrollPos");
+      if (scrollPos !== null) {
+        document.documentElement.scrollTop = parseInt(scrollPos, 10);
+      }
+    }
   }, 0);
 }
 
@@ -145,6 +151,17 @@ fetchData().then((data) => {
   });
 
 
+  // let scrollPos = sessionStorage.getItem("scrollPos");
+  // console.log(scrollPos);
+
+  // setTimeout(() => {
+  //   if (scrollPos !== null) {
+  //     document.documentElement.scrollTop = parseInt(scrollPos, 10);
+  //     console.log("scrolled");
+  //   }
+  // });
+
+
 
   // jsonMedsData = jsonMeds.map(item => {
   //   return {
@@ -165,19 +182,6 @@ fetchData().then((data) => {
   //   });
   // console.log(JSON.stringify(jsonMedsAvl));
   // console.log(JSON.stringify(jsonMedsAvl.sort((a, b) => a.dc - b.dc)));
-
-}).then(() => {
-
-  let scrollPos = sessionStorage.getItem("scrollPos");
-  if (scrollPos !== null) {
-    document.documentElement.scrollTop = parseInt(scrollPos, 10);
-    console.log(scrollPos);
-  }
-
-  // document.onload = function () {
-  //   document.documentElement.scrollTop = 10000;
-  // }
-
 
 });
 
@@ -362,12 +366,6 @@ if (!loggedIn) {
 
 
 if (loggedIn) {
-
-  window.addEventListener('beforeunload', () => {
-    sessionStorage.setItem("scrollPos", document.documentElement.scrollTop);
-    console.log(sessionStorage.getItem('scrollPos'));
-  });
-
 
   const octokit = new Octokit({ auth: localStorage.getItem("gt") });
   const { data: { id } } = await octokit.request("/user");
@@ -577,7 +575,12 @@ if (loggedIn) {
       }
     );
     return status;
-  }
+  };
+
+
+  window.addEventListener('beforeunload', () => {
+    sessionStorage.setItem("scrollPos", document.documentElement.scrollTop);
+  });
 
 
 
@@ -624,8 +627,6 @@ if (loggedIn) {
 
   }
 
-  // orequest();
-
 
 }
 
@@ -647,3 +648,6 @@ if (loggedIn) {
 //   console.log(CryptoJS.SHA3(message).toString());
 // };
 // hash("janaushadhimrj");
+
+
+
