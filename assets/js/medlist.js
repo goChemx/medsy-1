@@ -543,11 +543,12 @@ if (loggedIn) {
       btnUpdateText.innerHTML = "Updating...";
 
       setTimeout(() => {
-        btnClose.addEventListener('click', () => {
+        btnClose.addEventListener('click', function btnCloseHandler() {
           btnUpdate.disabled = false;
           btnUpdateText.innerHTML = "Update";
           btnUpdate.style.backgroundColor = "#5757E7";
           btnUpdateStatus.style.display = "none";
+          this.removeEventListener('click', btnCloseHandler);
         });
       }, 2000);
 
