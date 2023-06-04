@@ -466,7 +466,6 @@ if (loggedIn) {
    * Then regenerates the list in Updation Queue Dialog from the updationQueue[] array reusing the listMeds function.
    */
   btnUpdationQueue.addEventListener("click", function () {
-    medlistUpdateQueueDialog.innerHTML = "";
 
     let text = "";
 
@@ -542,20 +541,20 @@ if (loggedIn) {
       btnUpdate.style.backgroundColor = "#dc3545";
       btnUpdate.disabled = true;
       btnUpdateText.innerHTML = "Updating...";
-      btnClose.innerHTML = "Cancel";
 
-      btnClose.addEventListener('click', () => {
-        btnUpdate.disabled = false;
-        btnUpdateText.innerHTML = "Update";
-        btnUpdate.style.backgroundColor = "#5757E7";
-        btnUpdateStatus.style.display = "none";
-      });
+      setTimeout(() => {
+        btnClose.addEventListener('click', () => {
+          btnUpdate.disabled = false;
+          btnUpdateText.innerHTML = "Update";
+          btnUpdate.style.backgroundColor = "#5757E7";
+          btnUpdateStatus.style.display = "none";
+        });
+      }, 2000);
 
 
       const path = "assets/json/meds-avl-min.json";
 
       const sha = await getSHA(path);
-      console.log(sha);
 
       const base64 = CryptoJS.enc.Utf8.parse(JSON.stringify(jsonMedsAvl)).toString(CryptoJS.enc.Base64);
 
@@ -570,6 +569,7 @@ if (loggedIn) {
         counterBtnUpdate.innerHTML = "";
 
         btnUpdate.style.backgroundColor = "#5757E7";
+        btnUpdate.disabled = true;
         btnUpdateText.innerHTML = "Updated";
         btnClose.innerHTML = "Close";
         btnUpdateStatus.style.display = "none";
