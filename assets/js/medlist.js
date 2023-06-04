@@ -520,11 +520,37 @@ if (loggedIn) {
   });
 
 
+  const btnUpdateText = btnUpdate.querySelector('#updateBtn-text');
+  const btnUpdateStatus = btnUpdate.querySelector('#btnUpdate-status');
+  const btnClose = document.querySelector('#btnClose');
   btnUpdate.addEventListener('click', async (e) => {
+
+    if (typeof (updateAlert) !== "undefined") {
+      updateAlert.remove();
+    }
+
     if (updationQueue.length === 0) {
       e.stopPropagation();
+      medlistUpdateQueueDialog.innerHTML =
+        `<div class="alert bg-body py-4 mb-0">
+          <div class="alert alert-warning text-center mb-0" role="alert">Nothing to update.</div>
+        </div>`;
 
     } else {
+
+      btnUpdateStatus.style.display = "inline-block";
+      btnUpdate.style.backgroundColor = "#dc3545";
+      btnUpdate.disabled = true;
+      btnUpdateText.innerHTML = "Updating...";
+      btnClose.innerHTML = "Cancel";
+
+      btnClose.addEventListener('click', () => {
+        btnUpdate.disabled = false;
+        btnUpdateText.innerHTML = "Update";
+        btnUpdate.style.backgroundColor = "#5757E7";
+        btnUpdateStatus.style.display = "none";
+      });
+
 
       const path = "assets/json/meds-avl-min.json";
 
@@ -533,8 +559,33 @@ if (loggedIn) {
 
       const base64 = CryptoJS.enc.Utf8.parse(JSON.stringify(jsonMedsAvl)).toString(CryptoJS.enc.Base64);
 
-      const updateStatus = await updateFile(sha, path, base64);
-      console.log(updateStatus);
+      if (200 === await updateFile(sha, path, base64)) {
+
+        medlistUpdateQueueDialog.innerHTML =
+          `<div class="alert bg-body py-4 mb-0">
+            <div class="alert alert-success text-center mb-0" role="alert">Update Success!</div>
+          </div>`
+        updationQueue.length = 0;
+        counterBtnUpdationQueue.innerHTML = "";
+        counterBtnUpdate.innerHTML = "";
+
+        btnUpdate.style.backgroundColor = "#5757E7";
+        btnUpdateText.innerHTML = "Updated";
+        btnClose.innerHTML = "Close";
+        btnUpdateStatus.style.display = "none";
+
+      } else {
+
+        medlistUpdateQueueDialog.parentElement.prepend(Object.assign(document.createElement('div'), {
+          id: 'update-alert',
+          className: 'alert position-sticky z-1 bg-body pt-5 pb-4 top-0 mb-0 fade show',
+          innerHTML: `<div class="alert alert-danger alert-dismissible mb-0">
+                        <div class="text-center">Update Error!</div>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" data-bs-target="#update-alert"></button>
+                      </div>`
+        }));
+        const updateAlert = medlistUpdateQueueDialog.querySelector('#update-alert');
+      }
 
     }
   });
@@ -648,6 +699,4 @@ if (loggedIn) {
 //   console.log(CryptoJS.SHA3(message).toString());
 // };
 // hash("janaushadhimrj");
-
-
 
