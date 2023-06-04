@@ -485,7 +485,9 @@ if (loggedIn) {
         </li>`;
     }
 
-    medlistUpdateQueueDialog.innerHTML = text;
+    if (text) {
+      medlistUpdateQueueDialog.innerHTML = text;
+    }
   });
 
   /** Event Listener for when med checkbox in Update Queue Dialog is clicked upon.
