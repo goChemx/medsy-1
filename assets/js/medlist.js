@@ -36,6 +36,7 @@ async function fetchData() {
     ]);
 
     var jsonMedsData = await medsDataResponse.json();
+
     jsonMedsAvl = await medsAvlResponse.json();
   }
 
