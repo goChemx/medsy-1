@@ -13,15 +13,29 @@ let jsonMeds = [], jsonMedsAvl = [];
 
 async function fetchData() {
 
-  const medsDataResponse = await fetch("/assets/json/meds-data-min.json");
-  const jsonMedsData = await medsDataResponse.json();
+  // const medsDataResponse = await fetch("/assets/json/meds-data-min.json");
+  // const jsonMedsData = await medsDataResponse.json();
 
   if (!loggedIn) {
-    const medsAvlResponse = await fetch("https://api.github.com/repos/amitexm/medsy/contents/assets/json/meds-avl-min.json?qs=" + Date.now());
+
+    const [medsDataResponse, medsAvlResponse] = await Promise.all([
+      fetch("/assets/json/meds-data-min.json"),
+      fetch("https://api.github.com/repos/amitexm/medsy/contents/assets/json/meds-avl-min.json?qs=" + Date.now())
+    ]);
+
+    var jsonMedsData = await medsDataResponse.json();
+
     const { content } = await medsAvlResponse.json();
     jsonMedsAvl = JSON.parse(CryptoJS.enc.Base64.parse(content.replace(/\n/g, "")).toString(CryptoJS.enc.Utf8));
+
   } else {
-    const medsAvlResponse = await fetch("/assets/json/meds-avl-min.json?qs=" + Date.now());
+
+    const [medsDataResponse, medsAvlResponse] = await Promise.all([
+      fetch("/assets/json/meds-data-min.json"),
+      fetch("/assets/json/meds-avl-min.json?qs=" + Date.now())
+    ]);
+
+    var jsonMedsData = await medsDataResponse.json();
     jsonMedsAvl = await medsAvlResponse.json();
   }
 
