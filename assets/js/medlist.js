@@ -676,32 +676,29 @@ const scrollBtnDown = document.getElementById("scrollBtn-down");
 //  AUTO show/hide bottom nav onscroll.
 bottomNav.style.transition = "all 0.3s ease-in-out";
 let prevScrollpos = window.pageYOffset;
+let timer;
 window.addEventListener('scroll', () => {
-  let currentScrollPos = window.pageYOffset;
-  if (document.documentElement.scrollTop === 0) {
-    scrollBtnDown.style.display = "block";
-  } else if (document.documentElement.scrollTop + window.innerHeight == document.documentElement.scrollHeight) {
-    scrollBtnDown.style.display = "none";
-  } else if (prevScrollpos > currentScrollPos) {
-    bottomNav.style.transform = "translateY(100%)";
-    scrollBtnDown.style.display = "none";
-  } else {
-    bottomNav.style.transform = "translateY(0)";
-    scrollBtnDown.style.display = "block";
-  }
-  prevScrollpos = currentScrollPos;
-});
 
-window.addEventListener('scroll', () => {
-  // if () {
+  clearTimeout(timer);
 
-  // }
+  timer = setTimeout(() => {
 
-  console.log(document.documentElement.scrollTop);
-  console.log(document.documentElement.scrollHeight);
-  console.log(document.body.scrollHeight);
+    let currentScrollPos = window.pageYOffset;
+    if (document.documentElement.scrollTop === 0) {
+      scrollBtnDown.style.display = "block";
+    } else if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+      bottomNav.style.transform = "translateY(0)";
+      scrollBtnDown.style.display = "none";
+    } else if (prevScrollpos > currentScrollPos) {
+      bottomNav.style.transform = "translateY(100%)";
+      scrollBtnDown.style.display = "none";
+    } else {
+      bottomNav.style.transform = "translateY(0)";
+      scrollBtnDown.style.display = "block";
+    }
+    prevScrollpos = currentScrollPos;
 
-
+  }, 100);
 
 });
 
