@@ -386,21 +386,7 @@ if (loggedIn) {
     }, 1000);
   });
 
-  const bottomNav = document.getElementById("bottomNav");
-  bottomNav.classList.remove("d-none");
-  //  AUTO show/hide bottom nav onscroll.
-  bottomNav.style.transition = "all 0.3s ease-in-out";
-  let prevScrollpos = window.pageYOffset;
-  window.onscroll = function () {
-    let currentScrollPos = window.pageYOffset;
-    if (prevScrollpos > currentScrollPos) {
-      bottomNav.style.transform = "translateY(100%)";
-    } else {
-      bottomNav.style.transform = "translateY(0)";
-    }
-    prevScrollpos = currentScrollPos;
-  };
-
+  document.querySelector('#bottomNav').classList.remove("d-none");
 
 
   /*** Logged In Operations */
@@ -464,7 +450,7 @@ if (loggedIn) {
   /** Event listener for when first Update button in medlist screen is clicked.
    * It resets the Updation Queue Dialog by setting its innerHTML to empty string.
    * Then regenerates the list in Updation Queue Dialog from the updationQueue[] array reusing the listMeds function.
-   */
+  **/
   btnUpdationQueue.addEventListener("click", function () {
 
     let text = "";
@@ -685,6 +671,39 @@ if (loggedIn) {
 }
 
 
+const bottomNav = document.getElementById("bottomNav");
+const scrollBtnDown = document.getElementById("scrollBtn-down");
+//  AUTO show/hide bottom nav onscroll.
+bottomNav.style.transition = "all 0.3s ease-in-out";
+let prevScrollpos = window.pageYOffset;
+window.addEventListener('scroll', () => {
+  let currentScrollPos = window.pageYOffset;
+  if (document.documentElement.scrollTop === 0) {
+    scrollBtnDown.style.display = "block";
+  } else if (document.documentElement.scrollTop + window.innerHeight == document.documentElement.scrollHeight) {
+    scrollBtnDown.style.display = "none";
+  } else if (prevScrollpos > currentScrollPos) {
+    bottomNav.style.transform = "translateY(100%)";
+    scrollBtnDown.style.display = "none";
+  } else {
+    bottomNav.style.transform = "translateY(0)";
+    scrollBtnDown.style.display = "block";
+  }
+  prevScrollpos = currentScrollPos;
+});
+
+window.addEventListener('scroll', () => {
+  // if () {
+
+  // }
+
+  console.log(document.documentElement.scrollTop);
+  console.log(document.documentElement.scrollHeight);
+  console.log(document.body.scrollHeight);
+
+
+
+});
 
 
 

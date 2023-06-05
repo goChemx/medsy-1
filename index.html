@@ -107,11 +107,34 @@
     </div>
     <!-- Main End -->
 
-    <nav id="bottomNav" class="navbar fixed-bottom bg-body-tertiary justify-content-evenly py-2 border-top d-none">
-      <button type="button" class="btn btn-secondary"
+
+    <button id="scrollBtn-up" type="button" class="btn btn-danger position-fixed z-2" style="bottom:8px; right:1rem; padding-left: 10px;
+    padding-right: 10px;" onclick="document.documentElement.scrollTop = 0;">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-double-up"
+        viewBox="0 0 16 16">
+        <path fill-rule="evenodd"
+          d="M7.646 2.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 3.707 2.354 9.354a.5.5 0 1 1-.708-.708l6-6z" />
+        <path fill-rule="evenodd"
+          d="M7.646 6.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 7.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z" />
+      </svg>
+    </button>
+
+    <button id="scrollBtn-down" type="button" class="btn btn-danger position-fixed z-3" style="bottom:8px; right:1rem; padding-left: 10px;
+    padding-right: 10px;" onclick="document.documentElement.scrollTop = document.documentElement.scrollHeight;">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+        class="bi bi-chevron-double-down" viewBox="0 0 16 16">
+        <path fill-rule="evenodd"
+          d="M1.646 6.646a.5.5 0 0 1 .708 0L8 12.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+        <path fill-rule="evenodd"
+          d="M1.646 2.646a.5.5 0 0 1 .708 0L8 8.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+      </svg>
+    </button>
+
+    <nav id="bottomNav" class="navbar fixed-bottom bg-body-tertiary justify-content-evenly py-2 border-top d-none z-1">
+      <!-- <button type="button" class="btn btn-secondary"
         onclick="document.documentElement.scrollTop = document.documentElement.scrollHeight;">
         &darr;
-      </button>
+      </button> -->
 
       <button id="btnUpdationQueue" type="button" class="btn btn-primary px-3" data-bs-toggle="modal"
         data-bs-target="#dialogUpdationQueue">
@@ -119,9 +142,9 @@
         <span id="counterBtnUpdationQueue" class="badge bg-light text-secondary ms-1"></span>
       </button>
 
-      <button type="button" class="btn btn-danger" onclick="document.documentElement.scrollTop = 0;">
+      <!-- <button type="button" class="btn btn-danger" onclick="document.documentElement.scrollTop = 0;">
         &uarr;
-      </button>
+      </button> -->
     </nav>
   </div>
   <!-- Wrapper End -->
