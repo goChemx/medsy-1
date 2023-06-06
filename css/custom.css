@@ -72,6 +72,7 @@ input#passInput:invalid {
 }
 
 
+span#medlistSearchBoxClear:hover,
 span#medlistSearchBoxClear:active {
     background-color: lavender;
     border-radius: 2px;
