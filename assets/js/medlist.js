@@ -96,6 +96,10 @@ function listMeds(data, toAppend) {
       if (scrollPos !== null) {
         document.documentElement.scrollTop = parseInt(scrollPos, 10);
       }
+
+      if (medlistSearchBox.value.trim() !== "") {
+        medlistSearchBox.dispatchEvent(new Event("input", { bubbles: true }));
+      }
     }
   }, 0);
 }
@@ -135,6 +139,14 @@ function filterMeds(value) {
     if (iteration < divideInto) setTimeout(generateRows, 0);
   }, 0);
 }
+
+(async () => {
+  const searchValue = sessionStorage.getItem("searchValue");
+  if (searchValue !== null) {
+    medlistSearchBox.value = searchValue;
+    medlistSearchBoxClear.style.display = "block";
+  }
+})();
 
 fetchData().then((data) => {
 
@@ -633,13 +645,6 @@ if (loggedIn) {
   };
 
 
-  window.addEventListener('beforeunload', () => {
-    sessionStorage.setItem("scrollPos", document.documentElement.scrollTop);
-  });
-
-
-
-
 
 
 
@@ -715,6 +720,13 @@ window.addEventListener('scroll', () => {
 
   }, 100);
 
+});
+
+window.addEventListener('beforeunload', () => {
+
+  medlistSearchBox.value.trim() !== "" ? sessionStorage.setItem("searchValue", medlistSearchBox.value) : sessionStorage.removeItem("searchValue");
+
+  sessionStorage.setItem("scrollPos", document.documentElement.scrollTop);
 });
 
 

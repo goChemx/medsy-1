@@ -80,7 +80,8 @@
     <!-- Main -->
     <div id="main" class="main">
       <div id="medlistBody" class="container-sm pb-5 mb-3">
-        <div id="medlistSearch" class="input-group py-2 bg-body sticky-top" style="top: 53px; z-index: 1;">
+        <form method="GET" id="medlistSearch" class="input-group py-2 bg-body sticky-top"
+          style="top: 53px; z-index: 1;">
           <svg style="position:absolute; margin:12px; z-index:6;" width="20" height="20" viewBox="0 0 20 20">
             <path
               d="M14.386 14.386l4.0877 4.0877-4.0877-4.0877c-2.9418 2.9419-7.7115 2.9419-10.6533 0-2.9419-2.9418-2.9419-7.7115 0-10.6533 2.9418-2.9419 7.7115-2.9419 10.6533 0 2.9419 2.9418 2.9419 7.7115 0 10.6533z"
@@ -97,7 +98,7 @@
               </path>
             </svg>
           </span>
-        </div>
+        </form>
 
         <div id="medlistList" class="list-group list-group-flush d-grid gap-2 lh-base pt-5 mt-2">
           <img id="loaderMeds" class="mx-auto mt-5" style="width:200px; height:200px;"
