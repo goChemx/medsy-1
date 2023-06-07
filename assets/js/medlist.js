@@ -1,4 +1,5 @@
 import { Octokit } from "https://cdn.skypack.dev/@octokit/core";
+let octokit;
 // login,pass => janaushadhi,janaushadhimrj;
 
 const loggedIn = localStorage.getItem("gt") ? true : false;
@@ -13,19 +14,26 @@ let jsonMeds = [], jsonMedsAvl = [];
 
 async function fetchData() {
 
-  // const medsDataResponse = await fetch("/assets/json/meds-data-min.json");
-  // const jsonMedsData = await medsDataResponse.json();
+  if (loggedIn) {
 
-  if (!loggedIn) {
+    octokit = new Octokit({ auth: localStorage.getItem("gt") });
 
-    const [medsDataResponse, medsAvlResponse] = await Promise.all([
+    const [medsDataResponse, { data: { content } }] = await Promise.all([
+
       fetch("/assets/json/meds-data-min.json"),
-      fetch("https://api.github.com/repos/amitexm/medsy/contents/assets/json/meds-avl-min.json?qs=" + Date.now())
+
+      octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
+        owner: 'amitexm',
+        repo: 'medsy',
+        path: 'assets/json/meds-avl-min.json',
+        headers: {
+          'X-GitHub-Api-Version': '2022-11-28'
+        }
+      })
     ]);
 
     var jsonMedsData = await medsDataResponse.json();
 
-    const { content } = await medsAvlResponse.json();
     jsonMedsAvl = JSON.parse(CryptoJS.enc.Base64.parse(content.replace(/\n/g, "")).toString(CryptoJS.enc.Utf8));
 
   } else {
@@ -46,7 +54,7 @@ async function fetchData() {
       ...jsonMedsAvl.find((item) => item.dc === jsonMedsData[i].dc),
     });
   }
-  console.log(jsonMeds);
+  // console.log(jsonMeds);
   return jsonMeds;
 }
 
@@ -72,10 +80,10 @@ function listMeds(data, toAppend) {
 
     for (let i = base; i < loopSize; i++) {
       text = text +
-        `<li class="list-group-item d-flex ps-2 pb-3 ${data[i].avl ? "list-group-item-success" : "list-group-item-danger"}">
-          <div class="ms-2 w-100">
+        `<li class="list-group-item d-flex ps-3 pb-3 ${data[i].avl ? "list-group-item-success" : "list-group-item-danger"}">
+          <div class="w-100">
           <div>${data[i].gn}</div>
-            <div class="d-flex justify-content-between text-muted pe-2">
+            <div class="d-flex justify-content-between text-muted pe-2 mt-1">
               <small>(${data[i].dc})</small>
               <small>${data[i].us}</small>
               <small>${data[i].mrp ? "Rs. " + data[i].mrp : "Under Processing"}</small>
@@ -245,7 +253,7 @@ if (!loggedIn) {
 
       const cipher = "U2FsdGVkX19KAVxzKtTDRHF4/f4Zgu2njlgXSgQBpp7/No0XteV5H8OBAHhGZqn85Jc0vF9wamZSzykD6L2tYQ==";
       const gt = CryptoJS.AES.decrypt(cipher, pass).toString(CryptoJS.enc.Utf8);
-      console.log(gt);
+      // console.log(gt);
 
       const octokit = new Octokit({ auth: gt });
 
@@ -390,16 +398,10 @@ if (!loggedIn) {
 
 }
 
+else {
 
-
-if (loggedIn) {
-
-  const octokit = new Octokit({ auth: localStorage.getItem("gt") });
   const { data: { id } } = await octokit.request("/user");
-
   console.log(id);
-
-
 
   /** Logged UI */
 
@@ -484,11 +486,11 @@ if (loggedIn) {
 
     for (let i = 0; i < updationQueue.length; i++) {
       text = text +
-        `<li class="list-group-item d-flex pb-3 ps-2 ${updationQueue[i].avl ? "list-group-item-success" : "list-group-item-danger"}">
+        `<li class="list-group-item d-flex ps-3 pb-3 ${updationQueue[i].avl ? "list-group-item-success" : "list-group-item-danger"}">
             <div>${i + 1}. </div>
-            <div class="ms-2 w-100">
+            <div class="w-100">
               <div class="h6">${updationQueue[i].gn}</div>
-              <div class="d-flex justify-content-between text-muted pe-2">
+              <div class="d-flex justify-content-between text-muted pe-2 mt-1">
                 <small>(${updationQueue[i].dc})</small>
                 <small>${updationQueue[i].us}</small>
                 <small>${updationQueue[i].mrp ? "Rs. " + updationQueue[i].mrp : "Under Processing"}</small>
