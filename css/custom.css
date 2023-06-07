@@ -1,5 +1,5 @@
 :root {
-    --bs-body-font-size: 15px;
+    --bs-body-font-size: 0.9375rem;
 }
 
 .btn {
@@ -65,6 +65,16 @@ li.list-group-item {
 
 }
 
+li.list-group-item-danger {
+    /* background-color: #feeec8; */
+    color: var(--bs-danger);
+}
+
+li.list-group-item-success {
+    /* background-color: #d4f8c4; */
+    color: var(--bs-success);
+}
+
 
 input#passInput:valid,
 input#passInput:invalid {
@@ -86,14 +96,13 @@ input[type="checkbox"] {
 input[type="checkbox"]:active::after {
     content: "";
     display: block;
-    width: 15px;
+    width: 17px;
     height: 16px;
-    border-radius: 3px;
-    translate: -2px 2px;
+    /* border-radius: 3px; */
+    translate: -1px 2px;
     outline: solid 10px;
-    outline-color: #98c1d9;
-    outline-offset: -2px;
-    opacity: 50%;
+    outline-color: #0074ff4d;
+    outline-offset: -1px;
 }
 
 
