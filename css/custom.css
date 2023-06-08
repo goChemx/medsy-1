@@ -88,6 +88,18 @@ span#medlistSearchBoxClear:active {
     border-radius: 2px;
 }
 
+input#medlistSearchBox::placeholder {
+    color: lightslategray;
+}
+
+input#medlistSearchBox:focus {
+    border-color: var(--bs-primary) !important;
+}
+
+div#medlistSearch:hover svg {
+    color: var(--bs-primary) !important;
+}
+
 
 input[type="checkbox"] {
     cursor: pointer;
